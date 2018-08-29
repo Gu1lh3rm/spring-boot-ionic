@@ -1,5 +1,7 @@
 package com.gml.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ public class Categoria implements Serializable{
     private String nome;
 
     /*Declara a asociação do classe Produtos com Categoria para essa classe também foram criados métodos getters and setters*/
+    @JsonManagedReference
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
 
@@ -67,6 +70,12 @@ public class Categoria implements Serializable{
         return Objects.hash(getId_categoria());
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id_categoria=" + id_categoria +
+                ", nome='" + nome + '\'' +
+                ", produtos=" + produtos +
+                '}';
+    }
 }

@@ -1,5 +1,7 @@
 package com.gml.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,13 +18,15 @@ public class Produto implements Serializable {
     private String nome;
     private Double preco;
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(
             name = "PRODUTO_CATEGORIA",
             joinColumns = @JoinColumn(name = "produto_id", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "fkey_produto_categoria")),
             inverseJoinColumns = @JoinColumn(name = "categoria_id", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "fkey_categoria_produto"))
     )
-//    @JoinColumn(name="operadora_id", insertable= false, updatable=false, foreignKey = @ForeignKey(name = "fkey_contato_operadora"))
+
+
     private List<Categoria> categorias = new ArrayList<>();
 
     public Produto() {
