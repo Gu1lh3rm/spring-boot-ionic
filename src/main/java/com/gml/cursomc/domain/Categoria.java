@@ -2,6 +2,8 @@ package com.gml.cursomc.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +14,11 @@ public class Categoria implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_categoria;
     private String nome;
+
+    /*Declara a asociação do classe Produtos com Categoria para essa classe também foram criados métodos getters and setters*/
+    @ManyToMany(mappedBy = "categorias")
+    private List<Produto> produtos = new ArrayList<>();
+
 
     public Categoria() {
 
@@ -36,6 +43,14 @@ public class Categoria implements Serializable{
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 
     @Override
