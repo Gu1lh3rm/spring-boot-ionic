@@ -1,10 +1,15 @@
 package com.gml.cursomc.domain;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
 public class Categoria implements Serializable{
     private static final long seriaVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_categoria;
     private String nome;
 
