@@ -17,16 +17,14 @@ public class CategoriaService {
 
     public Categoria buscar(Integer id_categoria){
 
-//        Optional<Categoria> obj = Optional.ofNullable(categoriaRepository.findById(id_categoria).orElseThrow(() -> new IllegalArgumentException("Not found")));
+    Optional<Categoria> obj = categoriaRepository.findById(id_categoria);
 
-        Optional<Categoria> obj = categoriaRepository.findById(id_categoria);
+        return obj.orElseThrow(
+                () -> new ObjectNotFoundException(
+                        "Objeto não encontrado! Id: " + id_categoria + ", Tipo: " + Categoria.class.getName()
+                )
 
-//        return obj.orElse(null);
-          return obj.orElseThrow(
-              () -> new ObjectNotFoundException(
-                    "Objeto não encontrado! Id: " + id_categoria + ", Tipo: " + Categoria.class.getName()
-              )
-          );
+        );
     }
 
     public List<Categoria> findAll() {
