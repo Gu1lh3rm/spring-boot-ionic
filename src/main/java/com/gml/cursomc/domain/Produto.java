@@ -9,42 +9,46 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Produto implements Serializable {
-    private static final long seriaVersionUID = 1L;
+public class Produto implements Serializable{
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_produto;
+    private Integer id;
     private String nome;
     private Double preco;
 
     @JsonBackReference
     @ManyToMany
-    @JoinTable(
-            name = "PRODUTO_CATEGORIA",
-            joinColumns = @JoinColumn(name = "produto_id", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "fkey_produto_categoria")),
-            inverseJoinColumns = @JoinColumn(name = "categoria_id", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "fkey_categoria_produto"))
+    @JoinTable(name = "PRODUTO_CATEGORIA",
+        joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id")
     )
-
-
     private List<Categoria> categorias = new ArrayList<>();
 
-    public Produto() {
-
+    public List<Categoria> getCategorias() {
+        return categorias;
     }
 
-    public Produto(Integer id_produto, String nome, Double preco) {
-        this.id_produto = id_produto;
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
+    public Produto() {
+    }
+
+    public Produto(Integer id, String nome, Double preco) {
+        this.id = id;
         this.nome = nome;
         this.preco = preco;
     }
 
-    public Integer getId_produto() {
-        return id_produto;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId_produto(Integer id_produto) {
-        this.id_produto = id_produto;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -63,12 +67,13 @@ public class Produto implements Serializable {
         this.preco = preco;
     }
 
-    public List<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", preco=" + preco +
+                '}';
     }
 
     @Override
@@ -76,14 +81,12 @@ public class Produto implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Produto)) return false;
         Produto produto = (Produto) o;
-        return Objects.equals(getId_produto(), produto.getId_produto());
+        return Objects.equals(getId(), produto.getId());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getId_produto());
+        return Objects.hash(getId());
     }
-
-
 }

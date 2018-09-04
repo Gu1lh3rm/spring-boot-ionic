@@ -1,18 +1,19 @@
 package com.gml.cursomc.services;
 
-import com.gml.cursomc.domain.Categoria;
+import com.gml.cursomc.domain.Produto;
 import com.gml.cursomc.repositories.CategoriaRepository;
+import com.gml.cursomc.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CategoriaService {
+public class ProdutoService {
     @Autowired
-    private CategoriaRepository categoriaRepository;
+    ProdutoRepository produtoRepository;
 
-    public List<Categoria> findAll() {
-        return categoriaRepository.findAll();
+    public List<Produto> findAll() {
+        return produtoRepository.findAll();
     }
 }

@@ -1,6 +1,6 @@
 package com.gml.cursomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.apache.logging.log4j.util.PropertiesUtil;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,34 +10,38 @@ import java.util.Objects;
 
 @Entity
 public class Categoria implements Serializable{
-    private static final long seriaVersionUID = 1L;
+    private static final long serialVersionUID =1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_categoria;
+    private Integer id;
     private String nome;
 
-    /*Declara a asociação do classe Produtos com Categoria para essa classe também foram criados métodos getters and setters*/
-    @JsonManagedReference
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
 
-
-    public Categoria() {
-
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 
-    public Categoria(Integer id_categoria, String nome) {
-        this.id_categoria = id_categoria;
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    public Categoria() {
+    }
+
+    public Categoria(Integer id, String nome) {
+        this.id = id;
         this.nome = nome;
     }
 
-    public Integer getId_categoria() {
-        return id_categoria;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId_categoria(Integer id_categoria) {
-        this.id_categoria = id_categoria;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -48,12 +52,12 @@ public class Categoria implements Serializable{
         this.nome = nome;
     }
 
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
     }
 
     @Override
@@ -61,21 +65,12 @@ public class Categoria implements Serializable{
         if (this == o) return true;
         if (!(o instanceof Categoria)) return false;
         Categoria categoria = (Categoria) o;
-        return Objects.equals(getId_categoria(), categoria.getId_categoria());
+        return Objects.equals(getId(), categoria.getId());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(getId_categoria());
-    }
-
-    @Override
-    public String toString() {
-        return "Categoria{" +
-                "id_categoria=" + id_categoria +
-                ", nome='" + nome + '\'' +
-                ", produtos=" + produtos +
-                '}';
+        return Objects.hash(getId());
     }
 }

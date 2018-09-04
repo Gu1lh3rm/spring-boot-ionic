@@ -1,7 +1,7 @@
 package com.gml.cursomc.resources;
 
-import com.gml.cursomc.domain.Categoria;
-import com.gml.cursomc.services.CategoriaService;
+import com.gml.cursomc.domain.Produto;
+import com.gml.cursomc.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +11,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
-public class CategoriaResource {
+public class ProdutoResource {
     @Autowired
-    private CategoriaService categoriaService;
+    private ProdutoService produtoService;
 
-    @GetMapping(value = "/categorias")
-    public List<Categoria> getCategoria() {
-        return categoriaService.findAll();
+    @GetMapping(value = "/produtos")
+    public List<Produto> getProduto() {
+        return produtoService.findAll();
     }
 }
