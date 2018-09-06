@@ -1,7 +1,11 @@
 package com.gml.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,8 +22,19 @@ public class Cidade implements Serializable{
     @JoinColumn(name = "estado_id")
     private Estado estado;
 
+    @JsonBackReference
+    @OneToMany(mappedBy = "cidade")
+    private List<Endereco> enderecos = new ArrayList<>();
 
     public Cidade() {
+    }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
     public Cidade(Integer id, String nome, Estado estado) {
@@ -35,9 +50,6 @@ public class Cidade implements Serializable{
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
-
-
-
 
     public Integer getId() {
         return id;

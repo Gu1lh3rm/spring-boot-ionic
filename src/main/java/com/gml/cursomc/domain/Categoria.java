@@ -1,5 +1,6 @@
 package com.gml.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.apache.logging.log4j.util.PropertiesUtil;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Categoria implements Serializable{
     private Integer id;
     private String nome;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
 
