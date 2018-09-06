@@ -1,7 +1,7 @@
 package com.gml.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.gml.cursomc.domain.enums.TipoCliente;
+import com.gml.cursomc.enums.TipoCliente;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -27,6 +27,9 @@ public class Cliente implements Serializable{
     @CollectionTable(name = "TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos = new ArrayList<>();
+
     public Cliente() {
     }
 
@@ -36,6 +39,14 @@ public class Cliente implements Serializable{
         this.email = email;
         this.cfopOuCnpj = cfopOuCnpj;
         this.tipo = tipo.getCod();
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     public List<Endereco> getEnderecos() {

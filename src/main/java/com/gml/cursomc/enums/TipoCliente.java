@@ -1,4 +1,4 @@
-package com.gml.cursomc.domain.enums;
+package com.gml.cursomc.enums;
 
 public enum TipoCliente {
 
