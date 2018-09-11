@@ -1,7 +1,7 @@
 package com.gml.cursomc.services;
 
 import com.gml.cursomc.domain.Endereco;
-import com.gml.cursomc.exceptions.ObjectNotFoundException;
+import com.gml.cursomc.services.exceptions.ObjectNotFoundException;
 import com.gml.cursomc.repositories.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

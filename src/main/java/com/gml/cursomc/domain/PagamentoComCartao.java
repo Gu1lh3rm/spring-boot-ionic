@@ -1,6 +1,6 @@
 package com.gml.cursomc.domain;
 
-import com.gml.cursomc.enums.EstadoPagamento;
+import com.gml.cursomc.domain.enums.EstadoPagamento;
 
 import javax.persistence.Entity;
 

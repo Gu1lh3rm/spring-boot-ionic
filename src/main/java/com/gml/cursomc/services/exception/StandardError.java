@@ -1,4 +1,4 @@
-package com.gml.cursomc.resources;
+package com.gml.cursomc.services.exception;
 
 import java.io.Serializable;
 

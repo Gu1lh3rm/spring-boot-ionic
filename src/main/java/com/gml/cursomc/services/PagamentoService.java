@@ -2,7 +2,7 @@ package com.gml.cursomc.services;
 
 import com.gml.cursomc.domain.Categoria;
 import com.gml.cursomc.domain.Pagamento;
-import com.gml.cursomc.exceptions.ObjectNotFoundException;
+import com.gml.cursomc.services.exceptions.ObjectNotFoundException;
 import com.gml.cursomc.repositories.PagamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

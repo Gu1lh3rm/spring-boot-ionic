@@ -1,8 +1,8 @@
 package com.gml.cursomc;
 
 import com.gml.cursomc.domain.*;
-import com.gml.cursomc.enums.EstadoPagamento;
-import com.gml.cursomc.enums.TipoCliente;
+import com.gml.cursomc.domain.enums.EstadoPagamento;
+import com.gml.cursomc.domain.enums.TipoCliente;
 import com.gml.cursomc.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
