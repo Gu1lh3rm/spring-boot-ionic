@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+import com.gml.cursomc.domain.Cliente;
 import com.gml.cursomc.domain.enums.TipoCliente;
 import com.gml.cursomc.dto.ClienteNewDTO;
 import com.gml.cursomc.repositories.ClienteRepository;
@@ -16,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert, ClienteNewDTO> {
 
     @Autowired
-    private ClienteRepository repo;
+    private ClienteRepository clienteRepository;
 
     @Override
     public void initialize(ClienteInsert ann) {
@@ -27,18 +28,29 @@ public class ClienteInsertValidator implements ConstraintValidator<ClienteInsert
 
         List<FieldMessage> list = new ArrayList<>();
 
+        Cliente auxCpfouCnpj = clienteRepository.findByCpfOuCnpj(objDto.getCpfOuCnpj());
+
+        Cliente aux = clienteRepository.findByEmail(objDto.getEmail());
+
         if (objDto.getTipo().equals(TipoCliente.PESSOAFISICA.getCod()) && !BR.isValidCPF(objDto.getCpfOuCnpj())) {
             list.add(new FieldMessage("cpfOuCnpj", "CPF inválido"));
         }
 
-        if (objDto.getTipo().equals(TipoCliente.PESSOAJURIDICA.getCod()) && !BR.isValidCNPJ(objDto.getCpfOuCnpj())) {
+        else if (objDto.getTipo().equals(TipoCliente.PESSOAJURIDICA.getCod()) && !BR.isValidCNPJ(objDto.getCpfOuCnpj())) {
             list.add(new FieldMessage("cpfOuCnpj", "CNPJ inválido"));
         }
 
-//        Cliente aux = repo.findByEmail(objDto.getEmail());
-//        if (aux != null) {
-//            list.add(new FieldMessage("email", "Email já existente"));
-//        }
+        else if (auxCpfouCnpj != null && objDto.getTipo().equals(TipoCliente.PESSOAFISICA.getCod())) {
+            list.add(new FieldMessage("cpfOuCnpj", "CPF já existente"));
+        }
+
+        else if (auxCpfouCnpj != null && objDto.getTipo().equals(TipoCliente.PESSOAJURIDICA.getCod())) {
+            list.add(new FieldMessage("cpfOuCnpj", "CNPJ já existente"));
+        }
+
+        else if (aux != null) {
+            list.add(new FieldMessage("email", "Email já existente"));
+        }
 
         for (FieldMessage e : list) {
             context.disableDefaultConstraintViolation();
