@@ -1,0 +1,13 @@
+{
+	"nome" : "Guilherme Lourenco",
+	"email" : "guilhermemonteirolourenco@gmail.com",
+	"cpfOucnpj" : "39771451855",
+	"tipo": 1,
+	"telefone1" : "9993769893",
+	"telefone2" : "99937698",
+	"logradouro" : "Rua Jesus Sales da Silva",
+	"numero" : "66",
+	"complemento" : "Apto 210",
+	"cep" : "13045047",
+	"cidadeId": 2
+}
