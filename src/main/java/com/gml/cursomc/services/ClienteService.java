@@ -81,7 +81,7 @@ public class ClienteService {
     }
 
     public Cliente fromDTO(ClienteNewDTO objDto) {
-        Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCfopOuCnpj(), TipoCliente.toEnum(objDto.getTipo()));
+        Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()));
 
         Cidade cid = new Cidade(objDto.getCidadeId(), null, null);
 

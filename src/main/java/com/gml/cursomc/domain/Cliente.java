@@ -16,7 +16,7 @@ public class Cliente implements Serializable{
     private Integer id;
     private String nome;
     private String email;
-    private String cfopOuCnpj;
+    private String cpfOuCnpj;
     private Integer tipo;
 
 
@@ -34,11 +34,11 @@ public class Cliente implements Serializable{
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nome, String email, String cfopOuCnpj, TipoCliente tipo) {
+    public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
         this.id = id;
         this.nome = nome;
         this.email = email;
-        this.cfopOuCnpj = cfopOuCnpj;
+        this.cpfOuCnpj = cpfOuCnpj;
         this.tipo = (tipo==null) ? null : tipo.getCod();
     }
 
@@ -99,12 +99,12 @@ public class Cliente implements Serializable{
         this.email = email;
     }
 
-    public String getCfopOuCnpj() {
-        return cfopOuCnpj;
+    public String getCpfOuCnpj() {
+        return cpfOuCnpj;
     }
 
-    public void setCfopOuCnpj(String cfopOuCnpj) {
-        this.cfopOuCnpj = cfopOuCnpj;
+    public void setCpfOuCnpj(String cpfOuCnpj) {
+        this.cpfOuCnpj = cpfOuCnpj;
     }
 
     @Override
@@ -113,7 +113,7 @@ public class Cliente implements Serializable{
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
-                ", cfopOuCnpj='" + cfopOuCnpj + '\'' +
+                ", cfopOuCnpj='" + cpfOuCnpj + '\'' +
                 '}';
     }
 
