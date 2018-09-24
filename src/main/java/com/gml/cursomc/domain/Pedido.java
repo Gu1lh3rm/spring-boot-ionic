@@ -50,9 +50,18 @@ public class Pedido  implements Serializable {
     public Pedido(Integer id, Date instante, /*Pagamento pagamento,*/ Cliente cliente, Endereco enderecoDeEntrega) {
         this.id = id;
         this.instante = instante;
-        /*this.pagamento = pagamento;*/
         this.cliente = cliente;
         this.enderecoDeEntrega = enderecoDeEntrega;
+    }
+
+
+    public double getValorTotal() {
+        double soma = 0.0;
+        for (ItemPedido ip : itens) {
+            soma = soma + ip.getSubTotal();
+        }
+
+        return soma;
     }
 
     public Integer getId() {
