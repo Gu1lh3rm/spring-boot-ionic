@@ -1,5 +1,6 @@
 package com.gml.cursomc.services;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.gml.cursomc.domain.ItemPedido;
 import com.gml.cursomc.domain.PagamentoComBoleto;
 import com.gml.cursomc.domain.Pedido;
@@ -32,6 +33,9 @@ public class PedidoService {
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
 
+    @Autowired
+    private ClienteService clienteService;
+
     public List<Pedido> findAll() {
         return pedidoRepository.findAll();
     }
@@ -46,6 +50,9 @@ public class PedidoService {
     public Pedido insert(Pedido obj) {
         obj.setId(null);
         obj.setInstante(new Date());
+        /*Busca de cliente para a impressão do toString de Pedido*/
+        obj.setCliente(clienteService.findById(obj.getCliente().getId()));
+
         obj.getPagamento().setEstado(EstadoPagamento.PENDENTE);
         obj.getPagamento().setPedido(obj);
 
@@ -59,12 +66,15 @@ public class PedidoService {
 
         for (ItemPedido ip : obj.getItens()) {
             ip.setDesconto(0.0);
-            ip.setPreco(produtoService.findById(ip.getProduto().getId()).getPreco());
+            /*Busca de Produto para a impressão do toString de ItemPedido*/
+            ip.setProduto(produtoService.findById(ip.getProduto().getId()));
+
+            ip.setPreco(ip.getProduto().getPreco());
             ip.setPedido(obj);
         }
 
         itemPedidoRepository.saveAll(obj.getItens());
-
+        System.out.println(obj);
         return obj;
 
     }
