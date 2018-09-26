@@ -3,9 +3,11 @@ package com.gml.cursomc.services;
 
 import com.gml.cursomc.domain.*;
 import com.gml.cursomc.domain.enums.EstadoPagamento;
+import com.gml.cursomc.domain.enums.Perfil;
 import com.gml.cursomc.domain.enums.TipoCliente;
 import com.gml.cursomc.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -14,6 +16,9 @@ import java.util.Arrays;
 
 @Service
 public class DBService {
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     CategoriaRepository categoriaRepository;
@@ -102,7 +107,7 @@ public class DBService {
         estadoRepository.saveAll(Arrays.asList(est1, est2));
         cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 
-        Cliente cli1 = new Cliente(null,"Maria Silva","guilhermemonteirolourenc@gmail.com","123456316", TipoCliente.PESSOAFISICA);
+        Cliente cli1 = new Cliente(null,"Guilherme","guilhermemonteirolourenc@gmail.com","22204455008", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("123"));
 
         cli1.getTelefones().addAll(Arrays.asList("45646546","131331"));
 
@@ -111,8 +116,16 @@ public class DBService {
 
         cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 
-        clienteRepository.saveAll(Arrays.asList(cli1));
-        enderecoRepository.saveAll(Arrays.asList(e1, e2));
+
+        Cliente cli2 = new Cliente(null,"Guilherme 1","guilhermemonteirolourenc1@gmail.com","40302207031", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("123"));
+        cli2.getTelefones().addAll(Arrays.asList("45646546","131331"));
+        cli2.addPerfil(Perfil.ADMIN);
+        Endereco e3 = new Endereco(null,"Jbairro","305", "Fundos","Jardim","123456", cli2, c2);
+
+        cli2.getEnderecos().addAll(Arrays.asList(e3));
+
+        clienteRepository.saveAll(Arrays.asList(cli1, cli2));
+        enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
