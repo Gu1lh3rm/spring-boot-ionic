@@ -5,6 +5,7 @@ import com.gml.cursomc.domain.Pedido;
 import com.gml.cursomc.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -18,6 +19,7 @@ public class PedidoResource {
     @Autowired
     private PedidoService pedidoService;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/pedidos")
     public List<Pedido> getPedidos(){
         return pedidoService.findAll();

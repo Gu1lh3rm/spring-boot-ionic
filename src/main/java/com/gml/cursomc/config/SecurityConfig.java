@@ -27,6 +27,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     @Autowired
@@ -45,7 +46,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     private static final String[] PUBLIC_MATCHERS_GET = {
             "/api/produtos/**",
             "/api/categorias/**",
-            "/api/clientes/**",
+    };
+
+    private static final String[] PUBLIC_MATCHERS_POST = {
+            "/api/clientes/**"
     };
 
     @Override
@@ -57,8 +61,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
         httpSecurity.cors().and().csrf().disable();
         httpSecurity.authorizeRequests()
-                .antMatchers(PUBLIC_MATCHERS).permitAll()
+                .antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
                 .antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
+                .antMatchers(PUBLIC_MATCHERS).permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil));

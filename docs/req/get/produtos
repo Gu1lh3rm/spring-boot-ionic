@@ -1,0 +1,3 @@
+http://localhost:8080/api/page/?nome=or&categorias=1,4
+
+http://localhost:8080/api/page/?nome=or&categorias=1,4

@@ -4,6 +4,7 @@ import com.gml.cursomc.domain.Endereco;
 import com.gml.cursomc.services.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ public class EnderecoResource {
     @Autowired
     private EnderecoService enderecoService;
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/enderecos")
     public List<Endereco> getEnderecos() {
         return enderecoService.findAll();
