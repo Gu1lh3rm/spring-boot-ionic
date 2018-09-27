@@ -10,7 +10,7 @@ import com.gml.cursomc.domain.Cliente;
 import com.gml.cursomc.domain.enums.TipoCliente;
 import com.gml.cursomc.dto.ClienteNewDTO;
 import com.gml.cursomc.repositories.ClienteRepository;
-import com.gml.cursomc.services.exception.FieldMessage;
+import com.gml.cursomc.resources.exception.FieldMessage;
 import com.gml.cursomc.services.validation.utils.BR;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -3,11 +3,14 @@ package com.gml.cursomc.services;
 import com.gml.cursomc.domain.Cidade;
 import com.gml.cursomc.domain.Cliente;
 import com.gml.cursomc.domain.Endereco;
+import com.gml.cursomc.domain.enums.Perfil;
 import com.gml.cursomc.domain.enums.TipoCliente;
 import com.gml.cursomc.dto.ClienteDTO;
 import com.gml.cursomc.dto.ClienteNewDTO;
 import com.gml.cursomc.repositories.CidadeRepository;
 import com.gml.cursomc.repositories.EnderecoRepository;
+import com.gml.cursomc.security.UserSS;
+import com.gml.cursomc.services.exceptions.AuthorizationException;
 import com.gml.cursomc.services.exceptions.DataIntegrityException;
 import com.gml.cursomc.services.exceptions.ObjectNotFoundException;
 import com.gml.cursomc.repositories.ClienteRepository;
@@ -42,6 +45,12 @@ public class ClienteService {
     }
 
     public Cliente findById(Integer id) {
+
+        UserSS userSS = UserService.authenticated();
+        if (userSS == null || !userSS.hasRole(Perfil.ADMIN) && !id.equals(userSS.getId())){
+            throw new AuthorizationException("Acesso negado");
+        }
+
         Optional<Cliente> obj = clienteRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! " + id + ", Tipo: " + Cliente.class.getName()

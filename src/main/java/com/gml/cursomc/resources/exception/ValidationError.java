@@ -1,4 +1,4 @@
-package com.gml.cursomc.services.exception;
+package com.gml.cursomc.resources.exception;
 
 import java.util.ArrayList;
 import java.util.List;
