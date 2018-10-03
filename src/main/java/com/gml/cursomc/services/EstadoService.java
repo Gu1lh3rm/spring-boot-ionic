@@ -15,8 +15,9 @@ public class EstadoService {
     private EstadoRepository estadoRepository;
 
     public List<Estado> findAll(){
-        return estadoRepository.findAll();
+        return estadoRepository.findAllByOrderByNome();
     }
+
 
     public Estado findById(Integer id){
         Optional<Estado> obj = estadoRepository.findById(id);

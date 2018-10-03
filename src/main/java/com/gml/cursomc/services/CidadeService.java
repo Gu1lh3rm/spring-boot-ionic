@@ -24,4 +24,8 @@ public class CidadeService {
                 "Objeto não encontrado! Id: " + id + ", Tipo: " + Cidade.class.getName()
         ));
     }
+
+    public List<Cidade> findByEstado(Integer estadoId){
+        return cidadeRepository.findCidades(estadoId);
+    }
 }
