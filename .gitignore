@@ -23,3 +23,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+
+### Pacotes para serem compilados ###
+application-package.properties
