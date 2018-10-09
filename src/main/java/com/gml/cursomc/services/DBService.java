@@ -7,12 +7,14 @@ import com.gml.cursomc.domain.enums.Perfil;
 import com.gml.cursomc.domain.enums.TipoCliente;
 import com.gml.cursomc.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class DBService {
@@ -21,40 +23,48 @@ public class DBService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    CategoriaRepository categoriaRepository;
+    private CategoriaRepository categoriaRepository;
 
     @Autowired
-    ProdutoRepository produtoRepository;
+    private ProdutoRepository produtoRepository;
 
     @Autowired
-    EstadoRepository estadoRepository;
+    private EstadoRepository estadoRepository;
 
     @Autowired
-    CidadeRepository cidadeRepository;
+    private CidadeRepository cidadeRepository;
 
     @Autowired
-    EnderecoRepository enderecoRepository;
+    private EnderecoRepository enderecoRepository;
 
     @Autowired
-    ClienteRepository clienteRepository;
+    private ClienteRepository clienteRepository;
 
     @Autowired
-    PedidoRepository pedidoRepository;
+    private PedidoRepository pedidoRepository;
 
     @Autowired
-    PagamentoRepository pagamentoRepository;
+    private PagamentoRepository pagamentoRepository;
 
     @Autowired
-    ItemPedidoRepository itemPedidoRepository;
+    private ItemPedidoRepository itemPedidoRepository;
+
+    @Autowired
+    private CategoriaService categoriaService;
+
+    @Autowired BucketService bucketService;
+
+    @Value("${bucket.url}")
+    private String urlBase;
 
     public void instantiateTestDatabase() throws ParseException {
-        Categoria cat1 = new Categoria(null, "Informática");
-        Categoria cat2 = new Categoria(null, "Escritório");
-        Categoria cat3 = new Categoria(null, "Cama mesa e banho");
-        Categoria cat4 = new Categoria(null, "Eletrônicos");
-        Categoria cat5 = new Categoria(null, "Jardinagem");
-        Categoria cat6 = new Categoria(null, "Decoração");
-        Categoria cat7 = new Categoria(null, "Perfumaria");
+        Categoria cat1 = new Categoria(null, "Informática", null);
+        Categoria cat2 = new Categoria(null, "Escritório", null);
+        Categoria cat3 = new Categoria(null, "Cama mesa e banho", null);
+        Categoria cat4 = new Categoria(null, "Eletrônicos", null);
+        Categoria cat5 = new Categoria(null, "Jardinagem", null);
+        Categoria cat6 = new Categoria(null, "Decoração", null);
+        Categoria cat7 = new Categoria(null, "Perfumaria", null);
 
         Produto p1 = new Produto(null, "Computador", 2000.00);
         Produto p2 = new Produto(null, "Impressora", 800.00);
@@ -67,9 +77,6 @@ public class DBService {
         Produto p9 = new Produto(null, "Abajour", 100.00);
         Produto p10 = new Produto(null, "Pendente", 180.00);
         Produto p11 = new Produto(null, "Shampoo", 90.00);
-
-
-
 
         cat2.getProdutos().addAll(Arrays.asList(p2, p4));
         cat3.getProdutos().addAll(Arrays.asList(p5, p6));
@@ -107,30 +114,28 @@ public class DBService {
         estadoRepository.saveAll(Arrays.asList(est1, est2));
         cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 
-        Cliente cli1 = new Cliente(null,"Guilherme","guilhermemonteirolourenco@gmail.com","22204455008", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("123"));
-
+        Cliente cli1 = new Cliente(null,"ADMINISTRADOR","guilhermemonteirolourenco1@gmail.com","22204455008", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("Guilherme123456789"));
+        cli1.addPerfil(Perfil.ADMIN);
         cli1.getTelefones().addAll(Arrays.asList("45646546","131331"));
+        Endereco e3 = new Endereco(null,"Jbairro","305", "Fundos","Jardim","123456", cli1, c2);
+
+        cli1.getEnderecos().addAll(Arrays.asList(e3));
+
+        Cliente cli2 = new Cliente(null,"Guilherme 1","guilhermemonteirolourenco@gmail.com","40302207031", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("Guilherme123456789"));
+        cli2.getTelefones().addAll(Arrays.asList("45646546","131331"));
 
         Endereco e1 = new Endereco(null,"Rua Flores","300", "Apto 303","Jardim","3232321312", cli1, c1);
         Endereco e2 = new Endereco(null,"Avenida Matos","105", "Sala 800","Centro","12541545125", cli1, c2);
 
-        cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
 
-
-        Cliente cli2 = new Cliente(null,"Guilherme 1","guilhermemonteirolourenco1@gmail.com","40302207031", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("123"));
-        cli2.getTelefones().addAll(Arrays.asList("45646546","131331"));
-        cli2.addPerfil(Perfil.ADMIN);
-        Endereco e3 = new Endereco(null,"Jbairro","305", "Fundos","Jardim","123456", cli2, c2);
-
-        cli2.getEnderecos().addAll(Arrays.asList(e3));
-
+        cli2.getEnderecos().addAll(Arrays.asList(e1, e2));
         clienteRepository.saveAll(Arrays.asList(cli1, cli2));
         enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-        Pedido ped1 = new Pedido(null,sdf.parse("30/09/2017 10:32"),cli1,e1);
-        Pedido ped2 = new Pedido(null,sdf.parse("10/10/2017 19:35"),cli1,e2);
+        Pedido ped1 = new Pedido(null,sdf.parse("30/09/2017 10:32"),cli2,e1);
+        Pedido ped2 = new Pedido(null,sdf.parse("10/10/2017 19:35"),cli2,e2);
 
         Pagamento pgto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
 
@@ -159,6 +164,21 @@ public class DBService {
         p3.getItens().addAll(Arrays.asList(ip2));
 
         itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
+
+        getImgUrl();
+    }
+
+
+    public void getImgUrl(){
+        List<Categoria> obj = categoriaService.findAll();
+
+        obj.forEach(o -> {
+            String tmp =  "/cat" + o.getId().toString() + ".jpg" + "?alt=media&token=" + bucketService.getImgUrl("/cat",o.getId());
+            o.setImgUrl(tmp);
+            System.out.println(o.toString());
+
+            categoriaService.update(o);
+        });
     }
 
 }

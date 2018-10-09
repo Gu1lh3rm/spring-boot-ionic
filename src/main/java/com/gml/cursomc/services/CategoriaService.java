@@ -2,16 +2,23 @@ package com.gml.cursomc.services;
 
 import com.gml.cursomc.domain.Categoria;
 import com.gml.cursomc.dto.CategoriaDTO;
+import com.gml.cursomc.dto.bucketDTO;
 import com.gml.cursomc.services.exceptions.DataIntegrityException;
 import com.gml.cursomc.services.exceptions.ObjectNotFoundException;
 import com.gml.cursomc.repositories.CategoriaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +27,12 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
+    private static final Logger LOG = (Logger) LoggerFactory.getLogger(CategoriaService.class);
+
+
     public List<Categoria> findAll() {
-        return categoriaRepository.findAll();
+        List<Categoria> obj = categoriaRepository.findAll();
+        return obj;
     }
 
     public Categoria findById(Integer id) {
@@ -32,6 +43,8 @@ public class CategoriaService {
 
     public Categoria insert(Categoria obj) {
         obj.setId(null);
+        LOG.info("Teste de Log");
+        LOG.info(obj.toString());
         return categoriaRepository.save(obj);
     }
 
@@ -43,6 +56,7 @@ public class CategoriaService {
 
     private void updateData(Categoria newObj, Categoria obj){
         newObj.setNome(obj.getNome());
+        newObj.setImgUrl(obj.getImgUrl());
     }
 
     public void deleteById(Integer id){
@@ -61,7 +75,7 @@ public class CategoriaService {
     }
 
     public Categoria fromDTO(CategoriaDTO objDto){
-        return new Categoria(objDto.getId(), objDto.getNome());
+        return new Categoria(objDto.getId(), objDto.getNome(), objDto.getImgUrl());
     }
 
 }

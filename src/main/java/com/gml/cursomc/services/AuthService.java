@@ -33,7 +33,7 @@ public class AuthService {
         }
 
         String newPass = newPassword();
-        cliente.setSenha(bCryptPasswordEncoder.encode(newPass));
+        cliente.setPassword(bCryptPasswordEncoder.encode(newPass));
 
         clienteRepository.save(cliente);
         emailService.sendNewPassordEmail(cliente, newPass);

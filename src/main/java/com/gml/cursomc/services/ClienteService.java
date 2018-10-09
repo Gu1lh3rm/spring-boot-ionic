@@ -80,6 +80,13 @@ public class ClienteService {
         return obj;
     }
 
+
+    public Cliente passwordUpdate(Cliente obj){
+        Cliente newObj = findById(obj.getId());
+        updateData(newObj, obj);
+        return clienteRepository.save(newObj);
+    }
+
     public Cliente update(Cliente obj){
         Cliente newObj = findById(obj.getId());
         updateData(newObj, obj);
@@ -111,7 +118,7 @@ public class ClienteService {
     }
 
     public Cliente fromDTO(ClienteNewDTO objDto) {
-        Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()), bCryptPasswordEncoder.encode(objDto.getSenha()));
+        Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()), bCryptPasswordEncoder.encode(objDto.getPassword()));
 
         Cidade cid = new Cidade(objDto.getCidadeId(), null, null);
 

@@ -19,6 +19,8 @@ public class Categoria implements Serializable{
     private Integer id;
     private String nome;
 
+    private String imgUrl;
+
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
 
@@ -33,9 +35,10 @@ public class Categoria implements Serializable{
     public Categoria() {
     }
 
-    public Categoria(Integer id, String nome) {
+    public Categoria(Integer id, String nome, String imgUrl) {
         this.id = id;
         this.nome = nome;
+        this.imgUrl = imgUrl;
     }
 
     public Integer getId() {
@@ -54,11 +57,21 @@ public class Categoria implements Serializable{
         this.nome = nome;
     }
 
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     @Override
     public String toString() {
         return "Categoria{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
                 '}';
     }
 

@@ -24,6 +24,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
             throw  new UsernameNotFoundException(email);
         }
 
-        return new UserSS(cli.getId(), cli.getEmail(), cli.getSenha(), cli.getPerfil());
+        return new UserSS(cli.getId(), cli.getEmail(), cli.getPassword(), cli.getPerfil());
     }
 }

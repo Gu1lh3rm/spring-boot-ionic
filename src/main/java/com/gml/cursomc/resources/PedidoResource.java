@@ -27,6 +27,7 @@ public class PedidoResource {
         return pedidoService.findAll();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Pedido> getPedido(@PathVariable Integer id) {
         Pedido obj = pedidoService.findById(id);
@@ -40,7 +41,7 @@ public class PedidoResource {
         return ResponseEntity.created(uri).build();
     }
 
-
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping(value = "/page")
     public ResponseEntity<Page<Pedido>> getFindPage(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
