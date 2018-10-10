@@ -49,7 +49,9 @@ public class Cliente implements Serializable{
         addPerfil(Perfil.CLIENTE);
     }
 
-    public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo, String password) {
+    private String imgUrl;
+
+    public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo, String password, String imgUrl) {
         this.id = id;
         this.nome = nome;
         this.email = email;
@@ -57,6 +59,7 @@ public class Cliente implements Serializable{
         this.tipo = (tipo==null) ? null : tipo.getCod();
         this.password = password;
         addPerfil(Perfil.CLIENTE);
+        this.imgUrl = imgUrl;
     }
 
     public List<Pedido> getPedidos() {
@@ -140,6 +143,14 @@ public class Cliente implements Serializable{
         perfis.add(perfil.getCod());
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     @Override
     public String toString() {
         return "Clientes{" +
@@ -147,6 +158,7 @@ public class Cliente implements Serializable{
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", cfopOuCnpj='" + cpfOuCnpj + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
                 '}';
     }
 

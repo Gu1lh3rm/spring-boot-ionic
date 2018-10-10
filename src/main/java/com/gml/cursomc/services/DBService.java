@@ -6,6 +6,7 @@ import com.gml.cursomc.domain.enums.EstadoPagamento;
 import com.gml.cursomc.domain.enums.Perfil;
 import com.gml.cursomc.domain.enums.TipoCliente;
 import com.gml.cursomc.repositories.*;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -52,10 +53,19 @@ public class DBService {
     @Autowired
     private CategoriaService categoriaService;
 
+    @Autowired
+    private ClienteService clienteService;
+
+    @Autowired
+    private ProdutoService produtoService;
+
     @Autowired BucketService bucketService;
 
     @Value("${bucket.url}")
     private String urlBase;
+
+    @Value("${bucket.url.token}")
+    private String urlTokenType;
 
     public void instantiateTestDatabase() throws ParseException {
         Categoria cat1 = new Categoria(null, "Informática", null);
@@ -114,14 +124,14 @@ public class DBService {
         estadoRepository.saveAll(Arrays.asList(est1, est2));
         cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
 
-        Cliente cli1 = new Cliente(null,"ADMINISTRADOR","guilhermemonteirolourenco1@gmail.com","22204455008", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("Guilherme123456789"));
+        Cliente cli1 = new Cliente(null,"ADMINISTRADOR","guilhermemonteirolourenco1@gmail.com","22204455008", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("Guilherme123456789"), null);
         cli1.addPerfil(Perfil.ADMIN);
         cli1.getTelefones().addAll(Arrays.asList("45646546","131331"));
         Endereco e3 = new Endereco(null,"Jbairro","305", "Fundos","Jardim","123456", cli1, c2);
 
         cli1.getEnderecos().addAll(Arrays.asList(e3));
 
-        Cliente cli2 = new Cliente(null,"Guilherme 1","guilhermemonteirolourenco@gmail.com","40302207031", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("Guilherme123456789"));
+        Cliente cli2 = new Cliente(null,"Guilherme 1","guilhermemonteirolourenco@gmail.com","40302207031", TipoCliente.PESSOAFISICA, bCryptPasswordEncoder.encode("Guilherme123456789"), null);
         cli2.getTelefones().addAll(Arrays.asList("45646546","131331"));
 
         Endereco e1 = new Endereco(null,"Rua Flores","300", "Apto 303","Jardim","3232321312", cli1, c1);
@@ -165,19 +175,38 @@ public class DBService {
 
         itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
 
-        getImgUrl();
+        getCatImgUrl();
+        getUserImgUrl();
     }
 
 
-    public void getImgUrl(){
+    public void getCatImgUrl(){
         List<Categoria> obj = categoriaService.findAll();
 
         obj.forEach(o -> {
-            String tmp =  "/cat" + o.getId().toString() + ".jpg" + "?alt=media&token=" + bucketService.getImgUrl("/cat",o.getId());
+            String tmp =  "/cat" + o.getId().toString() + urlTokenType + bucketService.getImgUrl("/cat",o.getId());
             o.setImgUrl(tmp);
             System.out.println(o.toString());
 
-            categoriaService.update(o);
+            categoriaRepository.save(o);
+        });
+    }
+
+    public void getUserImgUrl(){
+        List<Cliente> obj = clienteService.findAll();
+
+
+        obj.forEach(o -> {
+            String urlImg = bucketService.getImgUrl("/cp",o.getId());
+
+            if(urlImg!=null){
+                urlImg =  "/cp" + o.getId().toString() + urlTokenType + urlImg;
+            }
+
+            o.setImgUrl(urlImg);
+            System.out.println(o.toString());
+
+            clienteRepository.save(o);
         });
     }
 

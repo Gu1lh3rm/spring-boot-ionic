@@ -38,10 +38,11 @@ public class BucketService {
             headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
             HttpEntity<String> entity = new HttpEntity<String>(headers);
 
+
+
             ResponseEntity<bucketDTO> response =
                     restTemplate.exchange(url, HttpMethod.GET, entity, bucketDTO.class, "1");
             bucketDTO bucket = response.getBody();
-
 
             return bucket.getDownloadTokens();
 
@@ -49,7 +50,7 @@ public class BucketService {
 
            LOG.info("GET: Erro ao buscar Url da imagem no firebase");
            LOG.info(e.toString());
-           return e.toString();
+           return null;
 
         }
     }

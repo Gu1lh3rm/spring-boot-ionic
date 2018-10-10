@@ -96,6 +96,9 @@ public class ClienteService {
     private void updateData(Cliente newObj, Cliente obj){
         newObj.setNome(obj.getNome());
         newObj.setEmail(obj.getEmail());
+        if (obj.getImgUrl()!=null) {
+            newObj.setImgUrl(obj.getImgUrl());
+        }
     }
 
     public void deleteById(Integer id){
@@ -114,11 +117,11 @@ public class ClienteService {
     }
 
     public Cliente fromDTO(ClienteDTO objDto){
-        return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null, null);
+        return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null, null, null);
     }
 
     public Cliente fromDTO(ClienteNewDTO objDto) {
-        Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()), bCryptPasswordEncoder.encode(objDto.getPassword()));
+        Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()), bCryptPasswordEncoder.encode(objDto.getPassword()), null);
 
         Cidade cid = new Cidade(objDto.getCidadeId(), null, null);
 
