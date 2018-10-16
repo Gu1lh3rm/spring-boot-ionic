@@ -76,17 +76,17 @@ public class DBService {
         Categoria cat6 = new Categoria(null, "Decoração", null);
         Categoria cat7 = new Categoria(null, "Perfumaria", null);
 
-        Produto p1 = new Produto(null, "Computador", 2000.00);
-        Produto p2 = new Produto(null, "Impressora", 800.00);
-        Produto p3 = new Produto(null, "Mouse", 80.00);
-        Produto p4 = new Produto(null, "Mesa de escritório", 300.00);
-        Produto p5 = new Produto(null, "Toalha", 50.00);
-        Produto p6 = new Produto(null, "Colcha", 200.00);
-        Produto p7 = new Produto(null, "TV true color", 1200.00);
-        Produto p8 = new Produto(null, "Roçadeira", 800.00);
-        Produto p9 = new Produto(null, "Abajour", 100.00);
-        Produto p10 = new Produto(null, "Pendente", 180.00);
-        Produto p11 = new Produto(null, "Shampoo", 90.00);
+        Produto p1 = new Produto(null, "Computador", 2000.00, null, null);
+        Produto p2 = new Produto(null, "Impressora", 800.00, null, null);
+        Produto p3 = new Produto(null, "Mouse", 80.00, null, null);
+        Produto p4 = new Produto(null, "Mesa de escritório", 300.00, null, null);
+        Produto p5 = new Produto(null, "Toalha", 50.00, null, null);
+        Produto p6 = new Produto(null, "Colcha", 200.00, null, null);
+        Produto p7 = new Produto(null, "TV true color", 1200.00, null, null);
+        Produto p8 = new Produto(null, "Roçadeira", 800.00, null, null);
+        Produto p9 = new Produto(null, "Abajour", 100.00, null, null);
+        Produto p10 = new Produto(null, "Pendente", 180.00, null, null);
+        Produto p11 = new Produto(null, "Shampoo", 90.00, null, null);
 
         cat2.getProdutos().addAll(Arrays.asList(p2, p4));
         cat3.getProdutos().addAll(Arrays.asList(p5, p6));
@@ -177,6 +177,7 @@ public class DBService {
 
         getCatImgUrl();
         getUserImgUrl();
+        getProdutoImgUrl();
     }
 
 
@@ -184,7 +185,7 @@ public class DBService {
         List<Categoria> obj = categoriaService.findAll();
 
         obj.forEach(o -> {
-            String tmp =  "/cat" + o.getId().toString() + urlTokenType + bucketService.getImgUrl("/cat",o.getId());
+            String tmp =  "/cat" + o.getId().toString() + urlTokenType + bucketService.getImgUrl("/cat" + o.getId().toString());
             o.setImgUrl(tmp);
             System.out.println(o.toString());
 
@@ -197,7 +198,7 @@ public class DBService {
 
 
         obj.forEach(o -> {
-            String urlImg = bucketService.getImgUrl("/cp",o.getId());
+            String urlImg = bucketService.getImgUrl("/cp" + o.getId().toString());
 
             if(urlImg!=null){
                 urlImg =  "/cp" + o.getId().toString() + urlTokenType + urlImg;
@@ -207,6 +208,30 @@ public class DBService {
             System.out.println(o.toString());
 
             clienteRepository.save(o);
+        });
+    }
+
+    public void getProdutoImgUrl(){
+        List<Produto> obj = produtoService.findAll();
+
+
+        obj.forEach(o -> {
+            String urlImg = bucketService.getImgUrl("/prod"+o.getId().toString());
+            String urlSmal = bucketService.getImgUrl("/prod"+o.getId().toString() + "-small");
+
+            if(urlImg!=null){
+                urlImg =  "/prod" + o.getId().toString() + urlTokenType + urlImg;
+            }
+
+            if(urlSmal!=null){
+                urlSmal =  "/prod" + o.getId().toString() + "-small" + urlTokenType + urlSmal;
+            }
+
+            o.setImgUrl(urlImg);
+            o.setImgSmallUrl(urlSmal);
+            System.out.println(o.toString());
+
+            produtoRepository.save(o);
         });
     }
 

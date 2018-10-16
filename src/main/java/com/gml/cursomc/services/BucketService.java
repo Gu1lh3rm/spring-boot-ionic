@@ -27,11 +27,11 @@ public class BucketService {
     @Value("${bucket.url}")
     private String urlBase;
 
-    public String getImgUrl(String imgName, Integer id){
+    public String getImgUrl(String imgName){
 
         try{
 
-            String url = urlBase + imgName + id.toString() +".jpg";
+            String url = urlBase + imgName +".jpg";
             RestTemplate restTemplate = new RestTemplate();
 
             HttpHeaders headers = new HttpHeaders();

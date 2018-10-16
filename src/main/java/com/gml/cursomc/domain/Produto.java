@@ -16,6 +16,9 @@ public class Produto implements Serializable{
     private String nome;
     private Double preco;
 
+    private String imgUrl;
+    private String imgSmallUrl;
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(name = "PRODUTO_CATEGORIA",
@@ -57,10 +60,12 @@ public class Produto implements Serializable{
     public Produto() {
     }
 
-    public Produto(Integer id, String nome, Double preco) {
+    public Produto(Integer id, String nome, Double preco, String imgUrl, String imgSmallUrl) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
+        this.imgUrl = imgUrl;
+        this.imgSmallUrl = imgSmallUrl;
     }
 
     public Integer getId() {
@@ -85,6 +90,22 @@ public class Produto implements Serializable{
 
     public void setPreco(Double preco) {
         this.preco = preco;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getImgSmallUrl() {
+        return imgSmallUrl;
+    }
+
+    public void setImgSmallUrl(String imgSmallUrl) {
+        this.imgSmallUrl = imgSmallUrl;
     }
 
     @Override
