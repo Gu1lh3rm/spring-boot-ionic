@@ -1,9 +1,5 @@
 package com.gml.cursomc.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.apache.logging.log4j.util.PropertiesUtil;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
