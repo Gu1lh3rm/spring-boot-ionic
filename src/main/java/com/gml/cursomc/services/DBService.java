@@ -67,6 +67,9 @@ public class DBService {
     @Value("${bucket.url.token}")
     private String urlTokenType;
 
+    @Value(("${bucket.local.prod}"))
+    private String bucketLocal;
+
     public void instantiateTestDatabase() throws ParseException {
         Categoria cat1 = new Categoria(null, "Informática", null);
         Categoria cat2 = new Categoria(null, "Escritório", null);
@@ -185,9 +188,14 @@ public class DBService {
         List<Categoria> obj = categoriaService.findAll();
 
         obj.forEach(o -> {
-            String tmp =  "/cat" + o.getId().toString() + urlTokenType + bucketService.getImgUrl("/cat" + o.getId().toString());
-            o.setImgUrl(tmp);
-            System.out.println(o.toString());
+            String urlImg = bucketService.getImgUrl("/cat" + o.getId().toString());
+
+            if(urlImg!=null){
+                urlImg =  "/cat" + o.getId().toString() + urlTokenType + urlImg;
+            } else {
+                urlImg = bucketLocal + "/avatar-blank.png";
+            }
+            o.setImgUrl(urlImg);
 
             categoriaRepository.save(o);
         });
@@ -201,11 +209,11 @@ public class DBService {
             String urlImg = bucketService.getImgUrl("/cp" + o.getId().toString());
 
             if(urlImg!=null){
-                urlImg =  "/cp" + o.getId().toString() + urlTokenType + urlImg;
+                urlImg =  urlBase  + "/cp" + o.getId().toString() + urlTokenType + urlImg;
+            } else {
+                urlImg = bucketLocal  + "/prod.jpg";
             }
-
             o.setImgUrl(urlImg);
-            System.out.println(o.toString());
 
             clienteRepository.save(o);
         });
@@ -220,11 +228,15 @@ public class DBService {
             String urlSmal = bucketService.getImgUrl("/prod"+o.getId().toString() + "-small");
 
             if(urlImg!=null){
-                urlImg =  "/prod" + o.getId().toString() + urlTokenType + urlImg;
+                urlImg = urlBase + "/prod" + o.getId().toString() + urlTokenType + urlImg;
+            } else {
+                urlImg = bucketLocal  + "/prod.jpg";
             }
 
             if(urlSmal!=null){
-                urlSmal =  "/prod" + o.getId().toString() + "-small" + urlTokenType + urlSmal;
+                urlSmal = urlBase + "/prod" + o.getId().toString() + "-small" + urlTokenType + urlSmal;
+            } else {
+                urlSmal = bucketLocal  + "/prod.jpg";
             }
 
             o.setImgUrl(urlImg);

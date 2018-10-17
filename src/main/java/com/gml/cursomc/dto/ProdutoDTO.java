@@ -1,6 +1,7 @@
 package com.gml.cursomc.dto;
 
 import com.gml.cursomc.domain.Produto;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
 
