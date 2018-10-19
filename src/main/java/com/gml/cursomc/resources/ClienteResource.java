@@ -4,14 +4,17 @@ import com.gml.cursomc.domain.Cliente;
 import com.gml.cursomc.dto.ClienteDTO;
 import com.gml.cursomc.dto.ClienteNewDTO;
 import com.gml.cursomc.services.ClienteService;
+import com.gml.cursomc.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +24,9 @@ import java.util.stream.Collectors;
 public class ClienteResource {
     @Autowired
     private ClienteService clienteService;
+
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Cliente> getCliente(@PathVariable Integer id) {
@@ -81,6 +87,12 @@ public class ClienteResource {
         Page<Cliente> list = clienteService.findPage(page, linesPerPage, orderBy, direction);
         Page<ClienteDTO> listDto = list.map( obj -> new ClienteDTO(obj));
         return ResponseEntity.ok().body(listDto);
+    }
+
+    @RequestMapping(value="/picture", method=RequestMethod.POST)
+    public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name="file") MultipartFile file) {
+        System.out.println(file);
+        return null;
     }
 
 }
