@@ -32,12 +32,24 @@ public class Produto implements Serializable{
     private Set<ItemPedido> itens = new HashSet<>();
 
     @JsonIgnore
+    @OneToMany(mappedBy = "id.produto")
+    private Set<ProdutoFile> produtoFiles = new HashSet<>();
+
+    @JsonIgnore
     public List<Pedido> getPedidos() {
         List<Pedido> lista = new ArrayList<>();
         for (ItemPedido x : itens){
             lista.add(x.getPedido());
         }
         return lista;
+    }
+
+    public Set<ProdutoFile> getProdutoFiles() {
+        return produtoFiles;
+    }
+
+    public void setProdutoFiles(Set<ProdutoFile> produtoFiles) {
+        this.produtoFiles = produtoFiles;
     }
 
     public Set<ItemPedido> getItens() {
