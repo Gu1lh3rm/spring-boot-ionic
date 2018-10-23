@@ -1,6 +1,7 @@
 package com.gml.cursomc.resources;
 
 import com.gml.cursomc.domain.Cliente;
+import com.gml.cursomc.domain.ClienteFile;
 import com.gml.cursomc.dto.ClienteDTO;
 import com.gml.cursomc.dto.ClienteNewDTO;
 import com.gml.cursomc.services.ClienteService;
@@ -89,10 +90,19 @@ public class ClienteResource {
         return ResponseEntity.ok().body(listDto);
     }
 
-    @RequestMapping(value="/picture", method=RequestMethod.POST)
-    public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name="file") MultipartFile file) {
-        System.out.println(file);
-        return null;
+//    @RequestMapping(value="/picture", method=RequestMethod.POST)
+//    public ResponseEntity<Void> uploadProfilePicture(@RequestParam(name="file") MultipartFile file) {
+//        System.out.println(file);
+//        return null;
+//    }
+
+    @PostMapping(value = "/picture")
+    public ResponseEntity<Void> insertFile(@Valid @RequestBody ClienteFile obj){
+        //ClienteFile obj = clienteService.fromDTO(objDto);
+        System.out.println(obj.toString());
+        obj = clienteService.insertFile(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
 }

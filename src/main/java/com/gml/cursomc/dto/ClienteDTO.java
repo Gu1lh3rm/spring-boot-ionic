@@ -22,8 +22,6 @@ public class ClienteDTO implements Serializable {
     @Email(message = "Email inválido")
     private String email;
 
-    private String imgUrl;
-
     public ClienteDTO() {
 
     }
@@ -32,7 +30,6 @@ public class ClienteDTO implements Serializable {
         id = obj.getId();
         nome = obj.getNome();
         email = obj.getEmail();
-        imgUrl = obj.getImgUrl();
     }
 
     public Integer getId() {
@@ -59,11 +56,4 @@ public class ClienteDTO implements Serializable {
         this.email = email;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
 }

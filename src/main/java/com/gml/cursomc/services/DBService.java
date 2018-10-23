@@ -276,7 +276,7 @@ public class DBService {
         List<Categoria> obj = categoriaService.findAll();
 
         obj.forEach(o -> {
-            String urlImg = bucketService.getImgUrl("/cat" + o.getId().toString());
+            String urlImg = null;/*bucketService.getImgUrl("/cat" + o.getId().toString());*/
 
             if(urlImg!=null){
                 urlImg =    urlBase  + "/cat" + o.getId().toString() + urlTokenType + urlImg;
@@ -294,14 +294,14 @@ public class DBService {
 
 
         obj.forEach(o -> {
-            String urlImg = bucketService.getImgUrl("/cp" + o.getId().toString());
+            String urlImg = null;/*bucketService.getImgUrl("/cp" + o.getId().toString());*/
 
             if(urlImg!=null){
                 urlImg =  urlBase  + "/cp" + o.getId().toString() + urlTokenType + urlImg;
             } else {
                 urlImg = bucketLocal  + "/prod.jpg";
             }
-            o.setImgUrl(urlImg);
+            //o.setImgUrl(urlImg);
 
             clienteRepository.save(o);
         });
@@ -312,8 +312,8 @@ public class DBService {
 
 
         obj.forEach(o -> {
-            String urlImg = bucketService.getImgUrl("/prod"+o.getId().toString());
-            String urlSmal = bucketService.getImgUrl("/prod"+o.getId().toString() + "-small");
+            String urlImg = null;/* = bucketService.getImgUrl("/prod"+o.getId().toString());*/
+            String urlSmal = null; /* = bucketService.getImgUrl("/prod"+o.getId().toString() + "-small");*/
 
             if(urlImg!=null){
                 urlImg = urlBase + "/prod" + o.getId().toString() + urlTokenType + urlImg;

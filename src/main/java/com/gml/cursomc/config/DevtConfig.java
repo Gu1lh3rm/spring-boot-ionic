@@ -27,7 +27,7 @@ public class DevtConfig {
         if(!strategy.equals("create") || !strategy.equals("create-drop")){
             return false;
         } else{
-            dbService.instantiateTestDatabase();
+            //dbService.instantiateTestDatabase();
             return true;
         }
     }

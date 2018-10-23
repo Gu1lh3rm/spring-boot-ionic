@@ -2,12 +2,14 @@ package com.gml.cursomc.services;
 
 import com.gml.cursomc.domain.Cidade;
 import com.gml.cursomc.domain.Cliente;
+import com.gml.cursomc.domain.ClienteFile;
 import com.gml.cursomc.domain.Endereco;
 import com.gml.cursomc.domain.enums.Perfil;
 import com.gml.cursomc.domain.enums.TipoCliente;
 import com.gml.cursomc.dto.ClienteDTO;
 import com.gml.cursomc.dto.ClienteNewDTO;
 import com.gml.cursomc.repositories.CidadeRepository;
+import com.gml.cursomc.repositories.ClienteFileRepository;
 import com.gml.cursomc.repositories.EnderecoRepository;
 import com.gml.cursomc.security.UserSS;
 import com.gml.cursomc.services.exceptions.AuthorizationException;
@@ -15,6 +17,7 @@ import com.gml.cursomc.services.exceptions.DataIntegrityException;
 import com.gml.cursomc.services.exceptions.ObjectNotFoundException;
 import com.gml.cursomc.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,11 +25,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ClienteService {
+
+    @Value("${bucket.local.avatar-blanck}")
+    private String avatar_blanck;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -39,6 +46,9 @@ public class ClienteService {
 
     @Autowired
     private EnderecoRepository enderecoRepository;
+
+    @Autowired
+    private ClienteFileRepository clienteFileRepository;
 
     public List<Cliente> findAll() {
         return clienteRepository.findAll();
@@ -75,6 +85,10 @@ public class ClienteService {
 
     public Cliente insert(Cliente obj) {
         obj.setId(null);
+        ClienteFile clienteFile = new ClienteFile(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, avatar_blanck, obj);
+
+        obj.setFile(clienteFile);
+
         obj = clienteRepository.save(obj);
         enderecoRepository.saveAll(obj.getEnderecos());
         return obj;
@@ -96,9 +110,6 @@ public class ClienteService {
     private void updateData(Cliente newObj, Cliente obj){
         newObj.setNome(obj.getNome());
         newObj.setEmail(obj.getEmail());
-        if (obj.getImgUrl()!=null) {
-            newObj.setImgUrl(obj.getImgUrl());
-        }
     }
 
     public void deleteById(Integer id){
@@ -136,6 +147,23 @@ public class ClienteService {
         if (objDto.getTelefone3()!=null) cli.getTelefones().add(objDto.getTelefone3());
 
         return cli;
+    }
+
+    public ClienteFile insertFile(ClienteFile obj) {
+
+        ClienteFile clienteFile = new ClienteFile();
+
+        clienteFile = clienteFileRepository.findByClienteId(obj.getCliente().getId());
+
+        if(obj.getDownloadUrl() == null) {
+            obj.setDownloadUrl(avatar_blanck);
+        }
+
+        if(clienteFile.getId() != null) {
+            obj.setId(clienteFile.getId());
+        }
+        obj = clienteFileRepository.save(obj);
+        return obj;
     }
 
 }

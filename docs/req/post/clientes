@@ -2,11 +2,13 @@ http://localhost:8080/api/clientes
 
 {
 	"nome" : "Guilherme Lourenco",
-	"email" : "guilhermemonteirolourenco@gmail.com",
-	"cpfOucnpj" : "39771451855",
+	"password": "123456789",
+	"email" : "guilhermemonteirolourenco3@gmail.com",
+	"cpfOuCnpj" : "39771451855",
 	"tipo": 1,
 	"telefone1" : "9993769893",
 	"telefone2" : "99937698",
+	"bairro"	: "Vila Formosa",
 	"logradouro" : "Rua Jesus Sales da Silva",
 	"numero" : "66",
 	"complemento" : "Apto 210",

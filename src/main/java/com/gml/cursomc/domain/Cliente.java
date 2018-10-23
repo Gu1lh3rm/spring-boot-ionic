@@ -1,6 +1,7 @@
 package com.gml.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gml.cursomc.domain.enums.Perfil;
 import com.gml.cursomc.domain.enums.TipoCliente;
 
@@ -45,11 +46,13 @@ public class Cliente implements Serializable{
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
+    @JsonManagedReference
+    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private ClienteFile file = new ClienteFile();
+
     public Cliente() {
         addPerfil(Perfil.CLIENTE);
     }
-
-    private String imgUrl;
 
     public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo, String password, String imgUrl) {
         this.id = id;
@@ -59,7 +62,14 @@ public class Cliente implements Serializable{
         this.tipo = (tipo==null) ? null : tipo.getCod();
         this.password = password;
         addPerfil(Perfil.CLIENTE);
-        this.imgUrl = imgUrl;
+    }
+
+    public ClienteFile getFile() {
+        return file;
+    }
+
+    public void setFile(ClienteFile file) {
+        this.file = file;
     }
 
     public List<Pedido> getPedidos() {
@@ -143,23 +153,24 @@ public class Cliente implements Serializable{
         perfis.add(perfil.getCod());
     }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
 
     @Override
     public String toString() {
-        return "Clientes{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", cfopOuCnpj='" + cpfOuCnpj + '\'' +
-                ", imgUrl='" + imgUrl + '\'' +
-                '}';
+        final StringBuilder sb = new StringBuilder("Cliente{");
+        sb.append("id=").append(id);
+        sb.append(", nome='").append(nome).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", cpfOuCnpj='").append(cpfOuCnpj).append('\'');
+        sb.append(", tipo=").append(tipo);
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", enderecos=").append(enderecos);
+        sb.append(", telefones=").append(telefones);
+        sb.append(", perfis=").append(perfis);
+        sb.append(", pedidos=").append(pedidos);
+        sb.append(", file=").append(file);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override
