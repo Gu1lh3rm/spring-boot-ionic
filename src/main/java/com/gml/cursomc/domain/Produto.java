@@ -1,6 +1,7 @@
 package com.gml.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -32,8 +33,9 @@ public class Produto implements Serializable{
     private Set<ItemPedido> itens = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "id.produto")
-    private Set<ProdutoFile> produtoFiles = new HashSet<>();
+    @JsonManagedReference
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+    private List<ProdutoFile> file = new ArrayList<>();
 
     @JsonIgnore
     public List<Pedido> getPedidos() {
@@ -42,14 +44,6 @@ public class Produto implements Serializable{
             lista.add(x.getPedido());
         }
         return lista;
-    }
-
-    public Set<ProdutoFile> getProdutoFiles() {
-        return produtoFiles;
-    }
-
-    public void setProdutoFiles(Set<ProdutoFile> produtoFiles) {
-        this.produtoFiles = produtoFiles;
     }
 
     public Set<ItemPedido> getItens() {

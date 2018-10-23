@@ -1,5 +1,6 @@
 package com.gml.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -10,10 +11,9 @@ import java.util.Objects;
 public class ProdutoFile implements Serializable {
     private static final long serialVersionUID =1L;
 
-    @JsonIgnore
-    @EmbeddedId
-    private ProdutoFilePK id = new ProdutoFilePK();
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
     private String bucket;
     private String generation;
@@ -32,12 +32,15 @@ public class ProdutoFile implements Serializable {
     private String path;
     private String downloadUrl;
 
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name="produto_id")
+    private Produto produto;
+
     public ProdutoFile() {
     }
 
-    public ProdutoFile(ProdutoFile produtoFile, Produto produto,String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens, String path, String downloadUrl) {
-        id.setProdutoFile(produtoFile);
-        id.setProduto(produto);
+    public ProdutoFile(String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens, String path, String downloadUrl, Produto produto) {
         this.name = name;
         this.bucket = bucket;
         this.generation = generation;
@@ -55,31 +58,14 @@ public class ProdutoFile implements Serializable {
         this.downloadTokens = downloadTokens;
         this.path = path;
         this.downloadUrl = downloadUrl;
+        this.produto = produto;
     }
 
-    @JsonIgnore
-    public ProdutoFile getProdutoFile(){
-        return id.getProdutoFile();
-    }
-
-    public void setProdutoFile(ProdutoFile produtoFile) {
-        id.setProdutoFile(produtoFile);
-    }
-
-    public Produto getProduto(){
-        return id.getProduto();
-    }
-
-    public void setProduto(Produto produto) {
-        id.setProduto(produto);
-    }
-
-    @JsonIgnore
-    public ProdutoFilePK getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(ProdutoFilePK id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -219,10 +205,33 @@ public class ProdutoFile implements Serializable {
         this.downloadUrl = downloadUrl;
     }
 
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ProdutoFile)) return false;
+        ProdutoFile that = (ProdutoFile) o;
+        return Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getId());
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ProdutoFile{");
-        sb.append("name='").append(name).append('\'');
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
         sb.append(", bucket='").append(bucket).append('\'');
         sb.append(", generation='").append(generation).append('\'');
         sb.append(", metageneration='").append(metageneration).append('\'');
@@ -239,21 +248,8 @@ public class ProdutoFile implements Serializable {
         sb.append(", downloadTokens='").append(downloadTokens).append('\'');
         sb.append(", path='").append(path).append('\'');
         sb.append(", downloadUrl='").append(downloadUrl).append('\'');
+        sb.append(", produto=").append(produto);
         sb.append('}');
         return sb.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ProdutoFile)) return false;
-        ProdutoFile that = (ProdutoFile) o;
-        return Objects.equals(getId(), that.getId());
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(getId());
     }
 }
