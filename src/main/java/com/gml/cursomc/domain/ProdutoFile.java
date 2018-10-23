@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -33,14 +35,13 @@ public class ProdutoFile implements Serializable {
     private String downloadUrl;
 
     @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name="produto_id")
-    private Produto produto;
+    @OneToMany(mappedBy = "produtoFile")
+    private List<Produto> produto = new ArrayList<>();
 
     public ProdutoFile() {
     }
 
-    public ProdutoFile(String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens, String path, String downloadUrl, Produto produto) {
+    public ProdutoFile(String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens, String path, String downloadUrl) {
         this.name = name;
         this.bucket = bucket;
         this.generation = generation;
@@ -58,7 +59,6 @@ public class ProdutoFile implements Serializable {
         this.downloadTokens = downloadTokens;
         this.path = path;
         this.downloadUrl = downloadUrl;
-        this.produto = produto;
     }
 
     public Integer getId() {
@@ -205,11 +205,11 @@ public class ProdutoFile implements Serializable {
         this.downloadUrl = downloadUrl;
     }
 
-    public Produto getProduto() {
+    public List<Produto> getProduto() {
         return produto;
     }
 
-    public void setProduto(Produto produto) {
+    public void setProduto(List<Produto> produto) {
         this.produto = produto;
     }
 
@@ -248,7 +248,6 @@ public class ProdutoFile implements Serializable {
         sb.append(", downloadTokens='").append(downloadTokens).append('\'');
         sb.append(", path='").append(path).append('\'');
         sb.append(", downloadUrl='").append(downloadUrl).append('\'');
-        sb.append(", produto=").append(produto);
         sb.append('}');
         return sb.toString();
     }

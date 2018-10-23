@@ -20,6 +20,12 @@ public class Produto implements Serializable{
     private String imgUrl;
     private String imgSmallUrl;
 
+    @JsonManagedReference
+    @ManyToOne
+    @JoinColumn(name = "produto_file_id")
+    private ProdutoFile produtoFile;
+
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(name = "PRODUTO_CATEGORIA",
@@ -33,17 +39,21 @@ public class Produto implements Serializable{
     private Set<ItemPedido> itens = new HashSet<>();
 
     @JsonIgnore
-    @JsonManagedReference
-    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
-    private List<ProdutoFile> file = new ArrayList<>();
-
-    @JsonIgnore
     public List<Pedido> getPedidos() {
         List<Pedido> lista = new ArrayList<>();
         for (ItemPedido x : itens){
             lista.add(x.getPedido());
         }
         return lista;
+    }
+
+
+    public ProdutoFile getProdutoFile() {
+        return produtoFile;
+    }
+
+    public void setProdutoFile(ProdutoFile produtoFile) {
+        this.produtoFile = produtoFile;
     }
 
     public Set<ItemPedido> getItens() {
@@ -66,12 +76,13 @@ public class Produto implements Serializable{
     public Produto() {
     }
 
-    public Produto(Integer id, String nome, Double preco, String imgUrl, String imgSmallUrl) {
+    public Produto(Integer id, String nome, Double preco, String imgUrl, String imgSmallUrl, ProdutoFile produtoFile) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.imgUrl = imgUrl;
         this.imgSmallUrl = imgSmallUrl;
+        this.produtoFile = produtoFile;
     }
 
     public Integer getId() {
@@ -116,11 +127,13 @@ public class Produto implements Serializable{
 
     @Override
     public String toString() {
-        return "Produto{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", preco=" + preco +
-                '}';
+        final StringBuilder sb = new StringBuilder("Produto{");
+        sb.append("id=").append(id);
+        sb.append(", nome='").append(nome).append('\'');
+        sb.append(", preco=").append(preco);
+        sb.append(", produtoFile=").append(produtoFile);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override
