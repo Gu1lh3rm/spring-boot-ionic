@@ -84,57 +84,57 @@ public class DBService {
         Categoria cat6 = new Categoria(null, "Decoração",null);
         Categoria cat7 = new Categoria(null, "Perfumaria",null);
 
-        Produto p1 = new Produto(null, "Computador", 2000.00,null,null);
-        Produto p2 = new Produto(null, "Impressora", 800.00,null,null);
-        Produto p3 = new Produto(null, "Mouse", 80.00,null,null);
-        Produto p4 = new Produto(null, "Mesa de escritório", 300.00,null,null);
-        Produto p5 = new Produto(null, "Toalha", 50.00,null,null);
-        Produto p6 = new Produto(null, "Colcha", 200.00,null,null);
-        Produto p7 = new Produto(null, "TV true color", 1200.00,null,null);
-        Produto p8 = new Produto(null, "Roçadeira", 800.00,null,null);
-        Produto p9 = new Produto(null, "Abajour", 100.00,null,null);
-        Produto p10 = new Produto(null, "Pendente", 180.00,null,null);
-        Produto p11 = new Produto(null, "Shampoo", 90.00,null,null);
+        Produto p1 = new Produto(null, "Computador", 2000.00);
+        Produto p2 = new Produto(null, "Impressora", 800.00);
+        Produto p3 = new Produto(null, "Mouse", 80.00);
+        Produto p4 = new Produto(null, "Mesa de escritório", 300.00);
+        Produto p5 = new Produto(null, "Toalha", 50.00);
+        Produto p6 = new Produto(null, "Colcha", 200.00);
+        Produto p7 = new Produto(null, "TV true color", 1200.00);
+        Produto p8 = new Produto(null, "Roçadeira", 800.00);
+        Produto p9 = new Produto(null, "Abajour", 100.00);
+        Produto p10 = new Produto(null, "Pendente", 180.00);
+        Produto p11 = new Produto(null, "Shampoo", 90.00);
 
-        Produto p12 = new Produto(null, "Produto 12", 10.00,null,null);
-        Produto p13 = new Produto(null, "Produto 13", 10.00,null,null);
-        Produto p14 = new Produto(null, "Produto 14", 10.00,null,null);
-        Produto p15 = new Produto(null, "Produto 15", 10.00,null,null);
-        Produto p16 = new Produto(null, "Produto 16", 10.00,null,null);
-        Produto p17 = new Produto(null, "Produto 17", 10.00,null,null);
-        Produto p18 = new Produto(null, "Produto 18", 10.00,null,null);
-        Produto p19 = new Produto(null, "Produto 19", 10.00,null,null);
-        Produto p20 = new Produto(null, "Produto 20", 10.00,null,null);
-        Produto p21 = new Produto(null, "Produto 21", 10.00,null,null);
-        Produto p22 = new Produto(null, "Produto 22", 10.00,null,null);
-        Produto p23 = new Produto(null, "Produto 23", 10.00,null,null);
-        Produto p24 = new Produto(null, "Produto 24", 10.00,null,null);
-        Produto p25 = new Produto(null, "Produto 25", 10.00,null,null);
-        Produto p26 = new Produto(null, "Produto 26", 10.00,null,null);
-        Produto p27 = new Produto(null, "Produto 27", 10.00,null,null);
-        Produto p28 = new Produto(null, "Produto 28", 10.00,null,null);
-        Produto p29 = new Produto(null, "Produto 29", 10.00,null,null);
-        Produto p30 = new Produto(null, "Produto 30", 10.00,null,null);
-        Produto p31 = new Produto(null, "Produto 31", 10.00,null,null);
-        Produto p32 = new Produto(null, "Produto 32", 10.00,null,null);
-        Produto p33 = new Produto(null, "Produto 33", 10.00,null,null);
-        Produto p34 = new Produto(null, "Produto 34", 10.00,null,null);
-        Produto p35 = new Produto(null, "Produto 35", 10.00,null,null);
-        Produto p36 = new Produto(null, "Produto 36", 10.00,null,null);
-        Produto p37 = new Produto(null, "Produto 37", 10.00,null,null);
-        Produto p38 = new Produto(null, "Produto 38", 10.00,null,null);
-        Produto p39 = new Produto(null, "Produto 39", 10.00,null,null);
-        Produto p40 = new Produto(null, "Produto 40", 10.00,null,null);
-        Produto p41 = new Produto(null, "Produto 41", 10.00,null,null);
-        Produto p42 = new Produto(null, "Produto 42", 10.00,null,null);
-        Produto p43 = new Produto(null, "Produto 43", 10.00,null,null);
-        Produto p44 = new Produto(null, "Produto 44", 10.00,null,null);
-        Produto p45 = new Produto(null, "Produto 45", 10.00,null,null);
-        Produto p46 = new Produto(null, "Produto 46", 10.00,null,null);
-        Produto p47 = new Produto(null, "Produto 47", 10.00,null,null);
-        Produto p48 = new Produto(null, "Produto 48", 10.00,null,null);
-        Produto p49 = new Produto(null, "Produto 49", 10.00,null,null);
-        Produto p50 = new Produto(null, "Produto 50", 10.00,null,null);
+        Produto p12 = new Produto(null, "Produto 12", 10.00);
+        Produto p13 = new Produto(null, "Produto 13", 10.00);
+        Produto p14 = new Produto(null, "Produto 14", 10.00);
+        Produto p15 = new Produto(null, "Produto 15", 10.00);
+        Produto p16 = new Produto(null, "Produto 16", 10.00);
+        Produto p17 = new Produto(null, "Produto 17", 10.00);
+        Produto p18 = new Produto(null, "Produto 18", 10.00);
+        Produto p19 = new Produto(null, "Produto 19", 10.00);
+        Produto p20 = new Produto(null, "Produto 20", 10.00);
+        Produto p21 = new Produto(null, "Produto 21", 10.00);
+        Produto p22 = new Produto(null, "Produto 22", 10.00);
+        Produto p23 = new Produto(null, "Produto 23", 10.00);
+        Produto p24 = new Produto(null, "Produto 24", 10.00);
+        Produto p25 = new Produto(null, "Produto 25", 10.00);
+        Produto p26 = new Produto(null, "Produto 26", 10.00);
+        Produto p27 = new Produto(null, "Produto 27", 10.00);
+        Produto p28 = new Produto(null, "Produto 28", 10.00);
+        Produto p29 = new Produto(null, "Produto 29", 10.00);
+        Produto p30 = new Produto(null, "Produto 30", 10.00);
+        Produto p31 = new Produto(null, "Produto 31", 10.00);
+        Produto p32 = new Produto(null, "Produto 32", 10.00);
+        Produto p33 = new Produto(null, "Produto 33", 10.00);
+        Produto p34 = new Produto(null, "Produto 34", 10.00);
+        Produto p35 = new Produto(null, "Produto 35", 10.00);
+        Produto p36 = new Produto(null, "Produto 36", 10.00);
+        Produto p37 = new Produto(null, "Produto 37", 10.00);
+        Produto p38 = new Produto(null, "Produto 38", 10.00);
+        Produto p39 = new Produto(null, "Produto 39", 10.00);
+        Produto p40 = new Produto(null, "Produto 40", 10.00);
+        Produto p41 = new Produto(null, "Produto 41", 10.00);
+        Produto p42 = new Produto(null, "Produto 42", 10.00);
+        Produto p43 = new Produto(null, "Produto 43", 10.00);
+        Produto p44 = new Produto(null, "Produto 44", 10.00);
+        Produto p45 = new Produto(null, "Produto 45", 10.00);
+        Produto p46 = new Produto(null, "Produto 46", 10.00);
+        Produto p47 = new Produto(null, "Produto 47", 10.00);
+        Produto p48 = new Produto(null, "Produto 48", 10.00);
+        Produto p49 = new Produto(null, "Produto 49", 10.00);
+        Produto p50 = new Produto(null, "Produto 50", 10.00);
 
         cat1.getProdutos().addAll(Arrays.asList(p12, p13, p14, p15, p16, p17, p18, p19, p20,
                 p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p34, p35, p36, p37, p38,
@@ -221,6 +221,7 @@ public class DBService {
 
 
 
+
         categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 
 
@@ -232,7 +233,6 @@ public class DBService {
                 p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50));
 
         produtoFileRepository.saveAll(Arrays.asList(pf1, pf2, pf3, pf4, pf5, pf6, pf7, pf8, pf9, pf10, pf11, pf12, pf13, pf14, pf15, pf16, pf17, pf18));
-
         /*
         Estado est1 = new Estado(null,"Minas Gerais");
         Estado est2 = new Estado(null, "São Paulo");
@@ -340,13 +340,13 @@ public class DBService {
         });
     }
 
-    public void getProdutoImgUrl(){
+    /*public void getProdutoImgUrl(){
         List<Produto> obj = produtoService.findAll();
 
 
         obj.forEach(o -> {
-            String urlImg = null;/* = bucketService.getImgUrl("/prod"+o.getId().toString());*/
-            String urlSmal = null; /* = bucketService.getImgUrl("/prod"+o.getId().toString() + "-small");*/
+            String urlImg = null;*//* = bucketService.getImgUrl("/prod"+o.getId().toString());*//*
+            String urlSmal = null; *//* = bucketService.getImgUrl("/prod"+o.getId().toString() + "-small");*//*
 
             if(urlImg!=null){
                 urlImg = urlBase + "/prod" + o.getId().toString() + urlTokenType + urlImg;
@@ -366,6 +366,6 @@ public class DBService {
 
             produtoRepository.save(o);
         });
-    }
+    }*/
 
 }

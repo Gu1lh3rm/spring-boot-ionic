@@ -211,43 +211,4 @@ public class ProdutoFile implements Serializable {
     public void setProduto(Produto produto) {
         this.produto = produto;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ProdutoFile)) return false;
-        ProdutoFile that = (ProdutoFile) o;
-        return Objects.equals(getId(), that.getId());
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(getId());
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("file{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", bucket='").append(bucket).append('\'');
-        sb.append(", generation='").append(generation).append('\'');
-        sb.append(", metageneration='").append(metageneration).append('\'');
-        sb.append(", contentType='").append(contentType).append('\'');
-        sb.append(", timeCreated='").append(timeCreated).append('\'');
-        sb.append(", updated='").append(updated).append('\'');
-        sb.append(", storageClass='").append(storageClass).append('\'');
-        sb.append(", size='").append(size).append('\'');
-        sb.append(", md5Hash='").append(md5Hash).append('\'');
-        sb.append(", contentEncoding='").append(contentEncoding).append('\'');
-        sb.append(", contentDisposition='").append(contentDisposition).append('\'');
-        sb.append(", crc32c='").append(crc32c).append('\'');
-        sb.append(", etag='").append(etag).append('\'');
-        sb.append(", downloadTokens='").append(downloadTokens).append('\'');
-        sb.append(", path='").append(path).append('\'');
-        sb.append(", downloadUrl='").append(downloadUrl).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
 }
