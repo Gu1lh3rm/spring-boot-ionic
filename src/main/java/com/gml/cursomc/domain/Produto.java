@@ -1,5 +1,6 @@
 package com.gml.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -20,11 +21,10 @@ public class Produto implements Serializable{
     private String imgUrl;
     private String imgSmallUrl;
 
-    @JsonManagedReference
-    @ManyToOne
-    @JoinColumn(name = "produto_file_id")
-    private ProdutoFile produtoFile;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "produto")
+    private List<ProdutoFile> file = new ArrayList<>();
 
     @JsonIgnore
     @ManyToMany
@@ -48,13 +48,7 @@ public class Produto implements Serializable{
     }
 
 
-    public ProdutoFile getProdutoFile() {
-        return produtoFile;
-    }
 
-    public void setProdutoFile(ProdutoFile produtoFile) {
-        this.produtoFile = produtoFile;
-    }
 
     public Set<ItemPedido> getItens() {
         return itens;
@@ -76,13 +70,12 @@ public class Produto implements Serializable{
     public Produto() {
     }
 
-    public Produto(Integer id, String nome, Double preco, String imgUrl, String imgSmallUrl, ProdutoFile produtoFile) {
+    public Produto(Integer id, String nome, Double preco, String imgUrl, String imgSmallUrl) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.imgUrl = imgUrl;
         this.imgSmallUrl = imgSmallUrl;
-        this.produtoFile = produtoFile;
     }
 
     public Integer getId() {
@@ -125,13 +118,25 @@ public class Produto implements Serializable{
         this.imgSmallUrl = imgSmallUrl;
     }
 
+    public List<ProdutoFile> getProdutoFiles() {
+        return file;
+    }
+
+    public void setProdutoFiles(List<ProdutoFile> file) {
+        this.file = file;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Produto{");
         sb.append("id=").append(id);
         sb.append(", nome='").append(nome).append('\'');
         sb.append(", preco=").append(preco);
-        sb.append(", produtoFile=").append(produtoFile);
+        sb.append(", imgUrl='").append(imgUrl).append('\'');
+        sb.append(", imgSmallUrl='").append(imgSmallUrl).append('\'');
+        sb.append(", file=").append(file);
+        sb.append(", categorias=").append(categorias);
+        sb.append(", itens=").append(itens);
         sb.append('}');
         return sb.toString();
     }

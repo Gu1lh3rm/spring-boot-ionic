@@ -1,12 +1,9 @@
 package com.gml.cursomc.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -35,13 +32,14 @@ public class ProdutoFile implements Serializable {
     private String downloadUrl;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "produtoFile")
-    private List<Produto> produto = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name="produto_id")
+    private Produto produto;
 
     public ProdutoFile() {
     }
 
-    public ProdutoFile(String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens, String path, String downloadUrl) {
+    public ProdutoFile(String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens, String path, String downloadUrl, Produto produto) {
         this.name = name;
         this.bucket = bucket;
         this.generation = generation;
@@ -59,6 +57,7 @@ public class ProdutoFile implements Serializable {
         this.downloadTokens = downloadTokens;
         this.path = path;
         this.downloadUrl = downloadUrl;
+        this.produto = produto;
     }
 
     public Integer getId() {
@@ -205,11 +204,11 @@ public class ProdutoFile implements Serializable {
         this.downloadUrl = downloadUrl;
     }
 
-    public List<Produto> getProduto() {
+    public Produto getProduto() {
         return produto;
     }
 
-    public void setProduto(List<Produto> produto) {
+    public void setProduto(Produto produto) {
         this.produto = produto;
     }
 
@@ -229,7 +228,7 @@ public class ProdutoFile implements Serializable {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("ProdutoFile{");
+        final StringBuilder sb = new StringBuilder("file{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", bucket='").append(bucket).append('\'');
