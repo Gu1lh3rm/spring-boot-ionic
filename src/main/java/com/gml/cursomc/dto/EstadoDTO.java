@@ -4,7 +4,7 @@ import com.gml.cursomc.domain.Estado;
 import com.gml.cursomc.services.validation.ClienteUpdate;
 import java.io.Serializable;
 
-@ClienteUpdate
+
 public class EstadoDTO implements Serializable {
     private static final long serialVersionUID =1L;
 

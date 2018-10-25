@@ -1,8 +1,9 @@
-package com.gml.cursomc.dto;
+package com.gml.cursomc.dto.common;
 
-import java.util.Objects;
+import java.io.Serializable;
 
-public class bucketDTO {
+public class BucketDTO implements Serializable {
+    private static final long serialVersionUID =1L;
 
     private String name;
     private String bucket;
@@ -20,25 +21,7 @@ public class bucketDTO {
     private String etag;
     private String downloadTokens;
 
-    public bucketDTO() {
-    }
-
-    public bucketDTO(String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens) {
-        this.name = name;
-        this.bucket = bucket;
-        this.generation = generation;
-        this.metageneration = metageneration;
-        this.contentType = contentType;
-        this.timeCreated = timeCreated;
-        this.updated = updated;
-        this.storageClass = storageClass;
-        this.size = size;
-        this.md5Hash = md5Hash;
-        this.contentEncoding = contentEncoding;
-        this.contentDisposition = contentDisposition;
-        this.crc32c = crc32c;
-        this.etag = etag;
-        this.downloadTokens = downloadTokens;
+    public BucketDTO() {
     }
 
     public String getName() {

@@ -3,6 +3,7 @@ package com.gml.cursomc.services;
 import com.gml.cursomc.domain.Categoria;
 import com.gml.cursomc.domain.Produto;
 import com.gml.cursomc.domain.ProdutoFile;
+import com.gml.cursomc.dto.ProdutoFileNewDTO;
 import com.gml.cursomc.dto.ProdutoNewDTO;
 import com.gml.cursomc.repositories.CategoriaRepository;
 import com.gml.cursomc.repositories.ProdutoFileRepository;
@@ -66,5 +67,10 @@ public class ProdutoService {
         prod.getCategorias().add(cat);
 
         return prod;
+    }
+
+    public List<ProdutoFile> fromFileDTO(ProdutoFileNewDTO objDto) {
+
+        return null;
     }
 }

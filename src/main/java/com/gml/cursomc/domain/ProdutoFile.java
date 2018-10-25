@@ -39,7 +39,8 @@ public class ProdutoFile implements Serializable {
     public ProdutoFile() {
     }
 
-    public ProdutoFile(String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens, String path, String downloadUrl, Produto produto) {
+    public ProdutoFile(Integer id, String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens, String path, String downloadUrl, Produto produto) {
+        this.id = id;
         this.name = name;
         this.bucket = bucket;
         this.generation = generation;

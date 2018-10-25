@@ -5,6 +5,7 @@ import com.gml.cursomc.domain.Categoria;
 import com.gml.cursomc.domain.Produto;
 import com.gml.cursomc.domain.ProdutoFile;
 import com.gml.cursomc.dto.ProdutoDTO;
+import com.gml.cursomc.dto.ProdutoFileNewDTO;
 import com.gml.cursomc.dto.ProdutoNewDTO;
 import com.gml.cursomc.resources.utils.URL;
 import com.gml.cursomc.services.ProdutoService;
@@ -62,14 +63,17 @@ public class ProdutoResource {
         return ResponseEntity.created(uri).build();
     }
 
-//    @PostMapping(value = "/picture")
-//    public ResponseEntity<Void> insertFile(@Valid @RequestBody ProdutoFile obj){
-//        //ClienteFile obj = clienteService.fromDTO(objDto);
-//        System.out.println(obj.toString());
-////        obj = clienteService.insertFile(obj);
-////        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-////        return ResponseEntity.created(uri).build();
-//        return null;
-//    }
+    @PostMapping(value = "/picture")
+    public ResponseEntity<Void> insertFile(@Valid @RequestBody ProdutoFileNewDTO objDto){
+
+        System.out.println(objDto.getProdutoId());
+
+        //ClienteFile obj = clienteService.fromDTO(objDto);
+        //System.out.println(obj.toString());
+//        obj = clienteService.insertFile(obj);
+//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+//        return ResponseEntity.created(uri).build();
+        return null;
+    }
 
 }

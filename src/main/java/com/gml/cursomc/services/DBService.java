@@ -200,7 +200,7 @@ public class DBService {
         p10.getCategorias().addAll(Arrays.asList(cat6));
         p11.getCategorias().addAll(Arrays.asList(cat7));
 
-        ProdutoFile pf1 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p1 );
+        /*ProdutoFile pf1 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p1 );
         ProdutoFile pf2 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p2 );
         ProdutoFile pf3 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p3 );
         ProdutoFile pf4 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p4 );
@@ -217,7 +217,7 @@ public class DBService {
         ProdutoFile pf15 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p15 );
         ProdutoFile pf16 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p16 );
         ProdutoFile pf17 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p17 );
-        ProdutoFile pf18 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p18 );
+        ProdutoFile pf18 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p18 );*/
 
 
 
@@ -232,8 +232,9 @@ public class DBService {
                 p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38,
                 p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50));
 
-        produtoFileRepository.saveAll(Arrays.asList(pf1, pf2, pf3, pf4, pf5, pf6, pf7, pf8, pf9, pf10, pf11, pf12, pf13, pf14, pf15, pf16, pf17, pf18));
         /*
+        produtoFileRepository.saveAll(Arrays.asList(pf1, pf2, pf3, pf4, pf5, pf6, pf7, pf8, pf9, pf10, pf11, pf12, pf13, pf14, pf15, pf16, pf17, pf18));
+
         Estado est1 = new Estado(null,"Minas Gerais");
         Estado est2 = new Estado(null, "São Paulo");
 
