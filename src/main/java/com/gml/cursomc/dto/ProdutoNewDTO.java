@@ -12,6 +12,7 @@ public class ProdutoNewDTO implements Serializable {
     private String nome;
 
     @NotNull(message = "Preenchimento obrigatório")
+    @Min(value = 0, message = "O valor não pode ser menor que 0")
     private Double preco;
 
     @NotNull(message = "Preenchimento obrigatório")
