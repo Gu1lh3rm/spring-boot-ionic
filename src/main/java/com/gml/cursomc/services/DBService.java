@@ -49,6 +49,10 @@ public class DBService {
     @Autowired
     private ProdutoFileRepository produtoFileRepository;
 
+
+    @Autowired
+    private FileRepository fileRepository;
+
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
 
@@ -200,6 +204,183 @@ public class DBService {
         p10.getCategorias().addAll(Arrays.asList(cat6));
         p11.getCategorias().addAll(Arrays.asList(cat7));
 
+
+        File file = new File(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"prod.jpg","assets/imgs","assets/imgs/prod.jpg",null);
+
+        ProdutoFile pf1 = new ProdutoFile(file,p1);
+        ProdutoFile pf2 = new ProdutoFile(file,p2);
+        ProdutoFile pf3 = new ProdutoFile(file,p3);
+        ProdutoFile pf4 = new ProdutoFile(file,p4);
+        ProdutoFile pf5 = new ProdutoFile(file,p5);
+        ProdutoFile pf6 = new ProdutoFile(file,p6);
+        ProdutoFile pf7 = new ProdutoFile(file,p7);
+        ProdutoFile pf8 = new ProdutoFile(file,p8);
+        ProdutoFile pf9 = new ProdutoFile(file,p9);
+        ProdutoFile pf10 = new ProdutoFile(file,p10);
+        ProdutoFile pf11 = new ProdutoFile(file,p11);
+        ProdutoFile pf12 = new ProdutoFile(file,p12);
+        ProdutoFile pf13 = new ProdutoFile(file,p13);
+        ProdutoFile pf14 = new ProdutoFile(file,p14);
+        ProdutoFile pf15 = new ProdutoFile(file,p15);
+        ProdutoFile pf16 = new ProdutoFile(file,p16);
+        ProdutoFile pf17 = new ProdutoFile(file,p17);
+        ProdutoFile pf18 = new ProdutoFile(file,p18);
+        ProdutoFile pf19 = new ProdutoFile(file,p19);
+        ProdutoFile pf20 = new ProdutoFile(file,p20);
+        ProdutoFile pf21 = new ProdutoFile(file,p21);
+        ProdutoFile pf22 = new ProdutoFile(file,p22);
+        ProdutoFile pf23 = new ProdutoFile(file,p23);
+        ProdutoFile pf24 = new ProdutoFile(file,p24);
+        ProdutoFile pf25 = new ProdutoFile(file,p25);
+        ProdutoFile pf26 = new ProdutoFile(file,p26);
+        ProdutoFile pf27 = new ProdutoFile(file,p27);
+        ProdutoFile pf28 = new ProdutoFile(file,p28);
+        ProdutoFile pf29 = new ProdutoFile(file,p29);
+        ProdutoFile pf30 = new ProdutoFile(file,p30);
+        ProdutoFile pf31 = new ProdutoFile(file,p31);
+        ProdutoFile pf32 = new ProdutoFile(file,p32);
+        ProdutoFile pf33 = new ProdutoFile(file,p33);
+        ProdutoFile pf34 = new ProdutoFile(file,p34);
+        ProdutoFile pf35 = new ProdutoFile(file,p35);
+        ProdutoFile pf36 = new ProdutoFile(file,p36);
+        ProdutoFile pf37 = new ProdutoFile(file,p37);
+        ProdutoFile pf38 = new ProdutoFile(file,p38);
+        ProdutoFile pf39 = new ProdutoFile(file,p39);
+        ProdutoFile pf40 = new ProdutoFile(file,p40);
+        ProdutoFile pf41 = new ProdutoFile(file,p41);
+        ProdutoFile pf42 = new ProdutoFile(file,p42);
+        ProdutoFile pf43 = new ProdutoFile(file,p43);
+        ProdutoFile pf44 = new ProdutoFile(file,p44);
+        ProdutoFile pf45 = new ProdutoFile(file,p45);
+        ProdutoFile pf46 = new ProdutoFile(file,p46);
+        ProdutoFile pf47 = new ProdutoFile(file,p47);
+        ProdutoFile pf48 = new ProdutoFile(file,p48);
+        ProdutoFile pf49 = new ProdutoFile(file,p49);
+        ProdutoFile pf50 = new ProdutoFile(file,p50);
+
+
+
+        p1.getFiles().addAll(Arrays.asList(pf1));
+        p2.getFiles().addAll(Arrays.asList(pf2));
+        p3.getFiles().addAll(Arrays.asList(pf3));
+        p4.getFiles().addAll(Arrays.asList(pf4));
+        p5.getFiles().addAll(Arrays.asList(pf5));
+        p6.getFiles().addAll(Arrays.asList(pf6));
+        p7.getFiles().addAll(Arrays.asList(pf7));
+        p8.getFiles().addAll(Arrays.asList(pf8));
+        p9.getFiles().addAll(Arrays.asList(pf9));
+        p10.getFiles().addAll(Arrays.asList(pf10));
+        p11.getFiles().addAll(Arrays.asList(pf11));
+        p12.getFiles().addAll(Arrays.asList(pf12));
+        p13.getFiles().addAll(Arrays.asList(pf13));
+        p14.getFiles().addAll(Arrays.asList(pf14));
+        p15.getFiles().addAll(Arrays.asList(pf15));
+        p16.getFiles().addAll(Arrays.asList(pf16));
+        p17.getFiles().addAll(Arrays.asList(pf17));
+        p18.getFiles().addAll(Arrays.asList(pf18));
+        p19.getFiles().addAll(Arrays.asList(pf19));
+        p20.getFiles().addAll(Arrays.asList(pf20));
+        p21.getFiles().addAll(Arrays.asList(pf21));
+        p22.getFiles().addAll(Arrays.asList(pf22));
+        p23.getFiles().addAll(Arrays.asList(pf23));
+        p24.getFiles().addAll(Arrays.asList(pf24));
+        p25.getFiles().addAll(Arrays.asList(pf25));
+        p26.getFiles().addAll(Arrays.asList(pf26));
+        p27.getFiles().addAll(Arrays.asList(pf27));
+        p28.getFiles().addAll(Arrays.asList(pf28));
+        p29.getFiles().addAll(Arrays.asList(pf29));
+        p30.getFiles().addAll(Arrays.asList(pf30));
+        p31.getFiles().addAll(Arrays.asList(pf31));
+        p32.getFiles().addAll(Arrays.asList(pf32));
+        p33.getFiles().addAll(Arrays.asList(pf33));
+        p34.getFiles().addAll(Arrays.asList(pf34));
+        p35.getFiles().addAll(Arrays.asList(pf35));
+        p36.getFiles().addAll(Arrays.asList(pf36));
+        p37.getFiles().addAll(Arrays.asList(pf37));
+        p38.getFiles().addAll(Arrays.asList(pf38));
+        p39.getFiles().addAll(Arrays.asList(pf39));
+        p40.getFiles().addAll(Arrays.asList(pf40));
+        p41.getFiles().addAll(Arrays.asList(pf41));
+        p42.getFiles().addAll(Arrays.asList(pf42));
+        p43.getFiles().addAll(Arrays.asList(pf43));
+        p44.getFiles().addAll(Arrays.asList(pf44));
+        p45.getFiles().addAll(Arrays.asList(pf45));
+        p46.getFiles().addAll(Arrays.asList(pf46));
+        p47.getFiles().addAll(Arrays.asList(pf47));
+        p48.getFiles().addAll(Arrays.asList(pf48));
+        p49.getFiles().addAll(Arrays.asList(pf49));
+        p50.getFiles().addAll(Arrays.asList(pf50));
+
+
+        categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
+
+        produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11,p12, p13, p14, p15, p16, p17, p18, p19, p20,
+                p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38,
+                p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50));
+
+        fileRepository.save(file);
+
+        produtoFileRepository.saveAll(Arrays.asList(pf1, pf2, pf3, pf4,pf5,pf6, pf7, pf8, pf9, pf10, pf11, pf12, pf13, pf14, pf15, pf16,
+                pf17, pf18, pf19, pf20, pf21, pf22, pf23, pf24, pf25, pf26, pf27, pf28, pf29, pf30, pf31, pf32, pf33, pf34, pf35, pf36, pf37, pf38, pf39, pf40, pf41, pf42, pf43, pf44, pf45, pf46, pf47, pf48, pf49, pf50));
+
+
+//
+//        p2.getFiles().addAll(Arrays.asList(pf1));
+//        p3.getFiles().addAll(Arrays.asList(pf1));
+//        p4.getFiles().addAll(Arrays.asList(pf1));
+//        p5.getFiles().addAll(Arrays.asList(pf1));
+//        p6.getFiles().addAll(Arrays.asList(pf1));
+//        p7.getFiles().addAll(Arrays.asList(pf1));
+//        p8.getFiles().addAll(Arrays.asList(pf1));
+//        p9.getFiles().addAll(Arrays.asList(pf1));
+//        p10.getFiles().addAll(Arrays.asList(pf1));
+//        p11.getFiles().addAll(Arrays.asList(pf1));
+//        p12.getFiles().addAll(Arrays.asList(pf1));
+//        p13.getFiles().addAll(Arrays.asList(pf1));
+//        p14.getFiles().addAll(Arrays.asList(pf1));
+//        p15.getFiles().addAll(Arrays.asList(pf1));
+//        p16.getFiles().addAll(Arrays.asList(pf1));
+//        p17.getFiles().addAll(Arrays.asList(pf1));
+//        p18.getFiles().addAll(Arrays.asList(pf1));
+//        p19.getFiles().addAll(Arrays.asList(pf1));
+//        p20.getFiles().addAll(Arrays.asList(pf1));
+//        p21.getFiles().addAll(Arrays.asList(pf1));
+//        p22.getFiles().addAll(Arrays.asList(pf1));
+//        p23.getFiles().addAll(Arrays.asList(pf1));
+//        p24.getFiles().addAll(Arrays.asList(pf1));
+//        p25.getFiles().addAll(Arrays.asList(pf1));
+//        p26.getFiles().addAll(Arrays.asList(pf1));
+//        p27.getFiles().addAll(Arrays.asList(pf1));
+//        p28.getFiles().addAll(Arrays.asList(pf1));
+//        p29.getFiles().addAll(Arrays.asList(pf1));
+//        p30.getFiles().addAll(Arrays.asList(pf1));
+//        p31.getFiles().addAll(Arrays.asList(pf1));
+//        p32.getFiles().addAll(Arrays.asList(pf1));
+//        p33.getFiles().addAll(Arrays.asList(pf1));
+//        p34.getFiles().addAll(Arrays.asList(pf1));
+//        p35.getFiles().addAll(Arrays.asList(pf1));
+//        p36.getFiles().addAll(Arrays.asList(pf1));
+//        p37.getFiles().addAll(Arrays.asList(pf1));
+//        p38.getFiles().addAll(Arrays.asList(pf1));
+//        p39.getFiles().addAll(Arrays.asList(pf1));
+//        p40.getFiles().addAll(Arrays.asList(pf1));
+//        p41.getFiles().addAll(Arrays.asList(pf1));
+//        p42.getFiles().addAll(Arrays.asList(pf1));
+//        p43.getFiles().addAll(Arrays.asList(pf1));
+//        p44.getFiles().addAll(Arrays.asList(pf1));
+//        p45.getFiles().addAll(Arrays.asList(pf1));
+//        p46.getFiles().addAll(Arrays.asList(pf1));
+//        p47.getFiles().addAll(Arrays.asList(pf1));
+//        p48.getFiles().addAll(Arrays.asList(pf1));
+//        p49.getFiles().addAll(Arrays.asList(pf1));
+//        p50.getFiles().addAll(Arrays.asList(pf1));
+
+
+
+
+
+
+
         /*ProdutoFile pf1 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p1 );
         ProdutoFile pf2 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p2 );
         ProdutoFile pf3 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p3 );
@@ -218,19 +399,6 @@ public class DBService {
         ProdutoFile pf16 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p16 );
         ProdutoFile pf17 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p17 );
         ProdutoFile pf18 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p18 );*/
-
-
-
-
-        categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
-
-
-
-        produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
-
-        produtoRepository.saveAll(Arrays.asList(p12, p13, p14, p15, p16, p17, p18, p19, p20,
-                p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38,
-                p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50));
 
         /*
         produtoFileRepository.saveAll(Arrays.asList(pf1, pf2, pf3, pf4, pf5, pf6, pf7, pf8, pf9, pf10, pf11, pf12, pf13, pf14, pf15, pf16, pf17, pf18));

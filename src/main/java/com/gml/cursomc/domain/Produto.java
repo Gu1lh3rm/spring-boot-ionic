@@ -19,10 +19,6 @@ public class Produto implements Serializable{
     private Double preco;
 
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "produto")
-    private List<ProdutoFile> file = new ArrayList<>();
-
     @JsonIgnore
     @ManyToMany
     @JoinTable(name = "PRODUTO_CATEGORIA",
@@ -35,6 +31,10 @@ public class Produto implements Serializable{
     @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens = new HashSet<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "id.produto")
+    private Set<ProdutoFile> files  = new HashSet<>();
+
     public Produto() {
     }
 
@@ -43,6 +43,26 @@ public class Produto implements Serializable{
         this.nome = nome;
         this.preco = preco;
     }
+
+
+    @JsonIgnore
+    public List<Pedido> pedidos() {
+        List<Pedido> lista = new ArrayList<>();
+        for (ItemPedido x : itens){
+            lista.add(x.getPedido());
+        }
+        return lista;
+    }
+
+    @JsonIgnore
+    public List<File> files() {
+        List<File> lista = new ArrayList<>();
+        for (ProdutoFile x : files){
+            lista.add(x.getFile());
+        }
+        return lista;
+    }
+
 
     public Integer getId() {
         return id;
@@ -68,21 +88,12 @@ public class Produto implements Serializable{
         this.preco = preco;
     }
 
-    public List<ProdutoFile> getFile() {
-        return file;
+    public List<Categoria> getCategorias() {
+        return categorias;
     }
 
-    public void setFile(List<ProdutoFile> file) {
-        this.file = file;
-    }
-
-    @JsonIgnore
-    public List<Pedido> getPedidos() {
-        List<Pedido> lista = new ArrayList<>();
-        for (ItemPedido x : itens){
-            lista.add(x.getPedido());
-        }
-        return lista;
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
     }
 
     public Set<ItemPedido> getItens() {
@@ -93,14 +104,14 @@ public class Produto implements Serializable{
         this.itens = itens;
     }
 
-    public List<Categoria> getCategorias() {
-        return categorias;
+    public Set<ProdutoFile> getFiles() {
+        return files;
     }
 
-
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
+    public void setFiles(Set<ProdutoFile> files) {
+        this.files = files;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -122,7 +133,9 @@ public class Produto implements Serializable{
         sb.append("id=").append(id);
         sb.append(", nome='").append(nome).append('\'');
         sb.append(", preco=").append(preco);
-        sb.append(", file=").append(file);
+        sb.append(", categorias=").append(categorias);
+        sb.append(", itens=").append(itens);
+        sb.append(", files=").append(files);
         sb.append('}');
         return sb.toString();
     }
