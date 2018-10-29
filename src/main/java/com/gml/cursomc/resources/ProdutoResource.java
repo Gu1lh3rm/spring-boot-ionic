@@ -2,8 +2,10 @@ package com.gml.cursomc.resources;
 
 
 import com.gml.cursomc.domain.Categoria;
+import com.gml.cursomc.domain.File;
 import com.gml.cursomc.domain.Produto;
 import com.gml.cursomc.domain.ProdutoFile;
+import com.gml.cursomc.dto.FileNewDTO;
 import com.gml.cursomc.dto.ProdutoDTO;
 import com.gml.cursomc.dto.ProdutoFileNewDTO;
 import com.gml.cursomc.dto.ProdutoNewDTO;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -26,8 +29,9 @@ public class ProdutoResource {
     @Autowired
     private ProdutoService produtoService;
 
-    @GetMapping(value = "")
+    @GetMapping
     public List<Produto> getProdutos() {
+
         return produtoService.findAll();
     }
 
@@ -64,16 +68,52 @@ public class ProdutoResource {
     }
 
     @PostMapping(value = "/picture")
-    public ResponseEntity<Void> insertFile(@Valid @RequestBody ProdutoFileNewDTO objDto){
+    public ProdutoFileNewDTO  insertFile(@Valid @RequestBody ProdutoFileNewDTO objDto){
 
-        System.out.println(objDto.getProdutoId());
+        Produto produto = new Produto();
 
-        //ClienteFile obj = clienteService.fromDTO(objDto);
-        //System.out.println(obj.toString());
-//        obj = clienteService.insertFile(obj);
-//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-//        return ResponseEntity.created(uri).build();
+        produto = produtoService.findById(objDto.getProdutoId());
+
+
+
+       /* ProdutoFile produtoFile = new ProdutoFile();
+
+        produtoFile = produtoService.insertProdutoFile(objDto);*/
+
+        /*
+
+        produto = produtoService.findById(objDto.getProdutoId());*/
+
+        /*objDto.getFile().forEach(o -> {
+            *//*System.out.println("teste de insert");
+            System.out.println(o.toString());*//*
+            ProdutoFile produtoFile = new ProdutoFile(o, produto);
+
+            produtoService.insertProdutoFile(produtoFile);
+
+        });*/
+
+
+
+        //produtoFileRepository.saveAll(Arrays.asList(produtoFile));
+
+//
+//
+//        ProdutoFile produtoFile = new ProdutoFile(file, produto);
+
+//        objDto.getFile().forEach(o -> {
+//            System.out.println("teste de insert");
+//            System.out.println(o.toString());
+//        });
+
+
+//        ProdutoFile obj = produtoService.fromDTO(objDto);
+
+
+        //obj = produtoService.insertProdutoFile(obj);
+
         return null;
+
     }
 
 }

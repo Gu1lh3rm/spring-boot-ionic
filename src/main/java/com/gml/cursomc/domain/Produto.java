@@ -54,7 +54,7 @@ public class Produto implements Serializable{
         return lista;
     }
 
-    @JsonIgnore
+    @JsonManagedReference
     public List<File> files() {
         List<File> lista = new ArrayList<>();
         for (ProdutoFile x : files){
@@ -135,7 +135,7 @@ public class Produto implements Serializable{
         sb.append(", preco=").append(preco);
         sb.append(", categorias=").append(categorias);
         sb.append(", itens=").append(itens);
-        sb.append(", files=").append(files);
+        sb.append(", files=").append(files());
         sb.append('}');
         return sb.toString();
     }

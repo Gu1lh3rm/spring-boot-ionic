@@ -1,19 +1,10 @@
-package com.gml.cursomc.domain;
+package com.gml.cursomc.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
-@Entity
-public class File  implements Serializable {
-    private static final long serialVersionUID =1L;
+public class FileNewDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private String name;
     private String bucket;
     private String generation;
@@ -32,43 +23,6 @@ public class File  implements Serializable {
     private String hash;
     private String path;
     private String downloadUrl;
-
-    @JsonBackReference
-    @OneToMany(mappedBy = "id.file")
-    private Set<ProdutoFile> files  = new HashSet<>();
-
-    public File() {
-    }
-
-    public File(String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens, String hash, String path, String downloadUrl, Set<ProdutoFile> files) {
-        this.name = name;
-        this.bucket = bucket;
-        this.generation = generation;
-        this.metageneration = metageneration;
-        this.contentType = contentType;
-        this.timeCreated = timeCreated;
-        this.updated = updated;
-        this.storageClass = storageClass;
-        this.size = size;
-        this.md5Hash = md5Hash;
-        this.contentEncoding = contentEncoding;
-        this.contentDisposition = contentDisposition;
-        this.crc32c = crc32c;
-        this.etag = etag;
-        this.downloadTokens = downloadTokens;
-        this.hash = hash;
-        this.path = path;
-        this.downloadUrl = downloadUrl;
-        this.files = files;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -213,14 +167,4 @@ public class File  implements Serializable {
     public void setDownloadUrl(String downloadUrl) {
         this.downloadUrl = downloadUrl;
     }
-
-    public Set<ProdutoFile> getFiles() {
-        return files;
-    }
-
-    public void setFiles(Set<ProdutoFile> files) {
-        this.files = files;
-    }
-
-
 }

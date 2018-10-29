@@ -1,5 +1,8 @@
 package com.gml.cursomc.dto.common;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 public class BucketDTO implements Serializable {
@@ -21,7 +24,21 @@ public class BucketDTO implements Serializable {
     private String etag;
     private String downloadTokens;
 
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Length(min = 10, message = "O tamanho da hash deve ser maior que 10 caracteres")
+    private String hash;
+
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Length(min = 5, message = "O tamanho do path deve ser maior que 5 caracteres")
+    private String path;
+
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Length(min = 10, message = "O tamanho da downloadUrl deve ser maior que 10 caracteres")
+    private String downloadUrl;
+
+
     public BucketDTO() {
+
     }
 
     public String getName() {
@@ -136,6 +153,30 @@ public class BucketDTO implements Serializable {
         this.etag = etag;
     }
 
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
+    }
+
     public String getDownloadTokens() {
         return downloadTokens;
     }
@@ -144,4 +185,28 @@ public class BucketDTO implements Serializable {
         this.downloadTokens = downloadTokens;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("BucketDTO{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", bucket='").append(bucket).append('\'');
+        sb.append(", generation='").append(generation).append('\'');
+        sb.append(", metageneration='").append(metageneration).append('\'');
+        sb.append(", contentType='").append(contentType).append('\'');
+        sb.append(", timeCreated='").append(timeCreated).append('\'');
+        sb.append(", updated='").append(updated).append('\'');
+        sb.append(", storageClass='").append(storageClass).append('\'');
+        sb.append(", size='").append(size).append('\'');
+        sb.append(", md5Hash='").append(md5Hash).append('\'');
+        sb.append(", contentEncoding='").append(contentEncoding).append('\'');
+        sb.append(", contentDisposition='").append(contentDisposition).append('\'');
+        sb.append(", crc32c='").append(crc32c).append('\'');
+        sb.append(", etag='").append(etag).append('\'');
+        sb.append(", downloadTokens='").append(downloadTokens).append('\'');
+        sb.append(", hash='").append(hash).append('\'');
+        sb.append(", path='").append(path).append('\'');
+        sb.append(", downloadUrl='").append(downloadUrl).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

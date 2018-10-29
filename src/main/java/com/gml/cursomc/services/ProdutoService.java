@@ -1,11 +1,15 @@
 package com.gml.cursomc.services;
 
 import com.gml.cursomc.domain.Categoria;
+import com.gml.cursomc.domain.File;
 import com.gml.cursomc.domain.Produto;
 import com.gml.cursomc.domain.ProdutoFile;
+import com.gml.cursomc.dto.FileNewDTO;
 import com.gml.cursomc.dto.ProdutoFileNewDTO;
 import com.gml.cursomc.dto.ProdutoNewDTO;
+import com.gml.cursomc.dto.common.BucketDTO;
 import com.gml.cursomc.repositories.CategoriaRepository;
+import com.gml.cursomc.repositories.FileRepository;
 import com.gml.cursomc.repositories.ProdutoFileRepository;
 import com.gml.cursomc.services.exceptions.ObjectNotFoundException;
 import com.gml.cursomc.repositories.ProdutoRepository;
@@ -26,6 +30,9 @@ public class ProdutoService {
 
     @Autowired
     private CategoriaRepository categoriaRepository;
+
+    @Autowired
+    private FileRepository fileRepository;
 
     @Autowired
     private ProdutoFileRepository produtoFileRepository;
@@ -55,7 +62,19 @@ public class ProdutoService {
     }
 
     public Produto insert(Produto obj) {
+
+        File file = new File();
+
+        file.setId(1);
+
+        ProdutoFile pf1 = new ProdutoFile(file,obj);
+
+        obj.getFiles().addAll(Arrays.asList(pf1));
+
         obj = produtoRepository.save(obj);
+
+        produtoFileRepository.saveAll(Arrays.asList(pf1));
+
         return obj;
     }
 
@@ -69,8 +88,41 @@ public class ProdutoService {
         return prod;
     }
 
-    public List<ProdutoFile> fromFileDTO(ProdutoFileNewDTO objDto) {
+
+    public File fromDTO(FileNewDTO obj) {
+
+        File file = new File(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+
+        return file;
+
+    }
+
+    public ProdutoFile fromDTO(ProdutoFileNewDTO objDto) {
+
+        /*File file = new File(objDto.getFile().getName(),objDto.getBucket(),objDto.getGeneration(),objDto.getMetageneration(),objDto.getContentType(),objDto.getTimeCreated(),objDto.getUpdated(),
+                objDto.getStorageClass(),objDto.getSize(),objDto.getMd5Hash(),objDto.getContentEncoding(),objDto.getContentDisposition(),objDto.getCrc32c(),objDto.getEtag(),
+                objDto.getDownloadTokens(),objDto.getHash(),objDto.getPath(),objDto.getDownloadUrl(),null);
+
+        Produto produto = new Produto(objDto.getProdutoId(), null, null);
+
+        ProdutoFile produtoFile = new ProdutoFile(file, produto);
+
+        fileRepository.save(file);
+
+        produtoFileRepository.saveAll(Arrays.asList(produtoFile));
+
+        return produtoFile;*/
+        return null;
+    }
+
+    public ProdutoFile insertProdutoFile(ProdutoFileNewDTO obj) {
+
+       // produto = produtoService.findById(objDto.getProdutoId());
+
+        //obj = produtoFileRepository.save(obj);
 
         return null;
     }
+
+
 }
