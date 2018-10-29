@@ -1,15 +1,23 @@
 package com.gml.cursomc.resources;
 
 
+import com.gml.cursomc.domain.Categoria;
 import com.gml.cursomc.domain.Produto;
+import com.gml.cursomc.domain.ProdutoFile;
 import com.gml.cursomc.dto.ProdutoDTO;
+import com.gml.cursomc.dto.ProdutoFileNewDTO;
+import com.gml.cursomc.dto.ProdutoNewDTO;
 import com.gml.cursomc.resources.utils.URL;
 import com.gml.cursomc.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -42,6 +50,25 @@ public class ProdutoResource {
         Page<Produto> list = produtoService.search(nomeDecoded, ids, page, linesPerPage, orderBy, direction);
         Page<ProdutoDTO> listDto = list.map(obj -> new ProdutoDTO(obj));
         return ResponseEntity.ok().body(listDto);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> insert(@Valid @RequestBody ProdutoNewDTO objDto){
+        Produto obj = produtoService.fromDTO(objDto);
+
+        obj = produtoService.insert(obj);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
+    }
+
+    @PostMapping(value = "/picture")
+    public ResponseEntity<Void> insertFile(@Valid @RequestBody ProdutoFileNewDTO objDto){
+
+        System.out.println(objDto.getProdutoId());
+
+        return null;
     }
 
 }

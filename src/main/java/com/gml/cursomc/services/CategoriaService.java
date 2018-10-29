@@ -2,23 +2,18 @@ package com.gml.cursomc.services;
 
 import com.gml.cursomc.domain.Categoria;
 import com.gml.cursomc.dto.CategoriaDTO;
-import com.gml.cursomc.dto.bucketDTO;
 import com.gml.cursomc.services.exceptions.DataIntegrityException;
 import com.gml.cursomc.services.exceptions.ObjectNotFoundException;
 import com.gml.cursomc.repositories.CategoriaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 

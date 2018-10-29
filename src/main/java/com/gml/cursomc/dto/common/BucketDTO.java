@@ -1,18 +1,10 @@
-package com.gml.cursomc.domain;
+package com.gml.cursomc.dto.common;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
-@Entity
-public class ProdutoFile implements Serializable {
+public class BucketDTO implements Serializable {
     private static final long serialVersionUID =1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     private String name;
     private String bucket;
     private String generation;
@@ -28,45 +20,8 @@ public class ProdutoFile implements Serializable {
     private String crc32c;
     private String etag;
     private String downloadTokens;
-    private String path;
-    private String downloadUrl;
 
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name="produto_id")
-    private Produto produto;
-
-    public ProdutoFile() {
-    }
-
-    public ProdutoFile(Integer id, String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens, String path, String downloadUrl, Produto produto) {
-        this.id = id;
-        this.name = name;
-        this.bucket = bucket;
-        this.generation = generation;
-        this.metageneration = metageneration;
-        this.contentType = contentType;
-        this.timeCreated = timeCreated;
-        this.updated = updated;
-        this.storageClass = storageClass;
-        this.size = size;
-        this.md5Hash = md5Hash;
-        this.contentEncoding = contentEncoding;
-        this.contentDisposition = contentDisposition;
-        this.crc32c = crc32c;
-        this.etag = etag;
-        this.downloadTokens = downloadTokens;
-        this.path = path;
-        this.downloadUrl = downloadUrl;
-        this.produto = produto;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    public BucketDTO() {
     }
 
     public String getName() {
@@ -189,27 +144,4 @@ public class ProdutoFile implements Serializable {
         this.downloadTokens = downloadTokens;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public String getDownloadUrl() {
-        return downloadUrl;
-    }
-
-    public void setDownloadUrl(String downloadUrl) {
-        this.downloadUrl = downloadUrl;
-    }
-
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
 }

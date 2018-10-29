@@ -1,8 +1,12 @@
 package com.gml.cursomc.dto;
 
-import java.util.Objects;
+import org.hibernate.validator.constraints.Length;
 
-public class bucketDTO {
+import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
+
+public class FileNewDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private String name;
     private String bucket;
@@ -20,26 +24,17 @@ public class bucketDTO {
     private String etag;
     private String downloadTokens;
 
-    public bucketDTO() {
-    }
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Length(min = 10, message = "O tamanho da hash deve ser maior que 10 caracteres")
+    private String hash;
 
-    public bucketDTO(String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens) {
-        this.name = name;
-        this.bucket = bucket;
-        this.generation = generation;
-        this.metageneration = metageneration;
-        this.contentType = contentType;
-        this.timeCreated = timeCreated;
-        this.updated = updated;
-        this.storageClass = storageClass;
-        this.size = size;
-        this.md5Hash = md5Hash;
-        this.contentEncoding = contentEncoding;
-        this.contentDisposition = contentDisposition;
-        this.crc32c = crc32c;
-        this.etag = etag;
-        this.downloadTokens = downloadTokens;
-    }
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Length(min = 5, message = "O tamanho do path deve ser maior que 5 caracteres")
+    private String path;
+
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Length(min = 10, message = "O tamanho da downloadUrl deve ser maior que 10 caracteres")
+    private String downloadUrl;
 
     public String getName() {
         return name;
@@ -161,4 +156,27 @@ public class bucketDTO {
         this.downloadTokens = downloadTokens;
     }
 
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl(String downloadUrl) {
+        this.downloadUrl = downloadUrl;
+    }
 }

@@ -151,9 +151,7 @@ public class ClienteService {
 
     public ClienteFile insertFile(ClienteFile obj) {
 
-        ClienteFile clienteFile = new ClienteFile();
-
-        clienteFile = clienteFileRepository.findByClienteId(obj.getCliente().getId());
+        ClienteFile clienteFile = clienteFileRepository.findByClienteId(obj.getCliente().getId());
 
         if(obj.getDownloadUrl() == null) {
             obj.setDownloadUrl(avatar_blanck);
