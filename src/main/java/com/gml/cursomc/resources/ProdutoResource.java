@@ -61,11 +61,15 @@ public class ProdutoResource {
     }
 
     @PostMapping(value = "/picture")
-    public ResponseEntity<Void> insertFile(@Valid @RequestBody ProdutoFileNewDTO objDto){
+    public @Valid ProdutoFileNewDTO insertFile(@Valid @RequestBody ProdutoFileNewDTO objDto){
 
-        System.out.println(objDto.getProdutoId());
+        Produto produto = produtoService.findById(objDto.getProdutoId());
 
-        return null;
+        //System.out.println(objDto.getProdutoId().toString());
+
+        System.out.println(objDto.toString());
+
+        return objDto;
     }
 
 }
