@@ -29,6 +29,18 @@ public class ProdutoResource {
     @Autowired
     private ProdutoService produtoService;
 
+    private Produto produto = new Produto();
+
+    private File file = new File();
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
     @GetMapping
     public List<Produto> getProdutos() {
 
@@ -68,51 +80,25 @@ public class ProdutoResource {
     }
 
     @PostMapping(value = "/picture")
-    public ProdutoFileNewDTO  insertFile(@Valid @RequestBody ProdutoFileNewDTO objDto){
+    public Produto  insertFile(@Valid @RequestBody ProdutoFileNewDTO objDto){
 
-        Produto produto = new Produto();
+        Produto obj = produtoService.findById(objDto.getProdutoId());
 
-        produto = produtoService.findById(objDto.getProdutoId());
+        objDto.getFile().forEach(o -> {
+            File file = new File(o.getName(),o.getBucket(),o.getGeneration(),o.getMetageneration(),o.getContentType(),o.getTimeCreated(),o.getUpdated(),
+                    o.getStorageClass(),o.getSize(),o.getMd5Hash(),o.getContentEncoding(),o.getContentDisposition(),o.getCrc32c(),o.getEtag(),
+                    o.getDownloadTokens(),o.getHash(),o.getPath(),o.getDownloadUrl(),null);
+            file = produtoService.insertFile(file);
 
-
-
-       /* ProdutoFile produtoFile = new ProdutoFile();
-
-        produtoFile = produtoService.insertProdutoFile(objDto);*/
-
-        /*
-
-        produto = produtoService.findById(objDto.getProdutoId());*/
-
-        /*objDto.getFile().forEach(o -> {
-            *//*System.out.println("teste de insert");
-            System.out.println(o.toString());*//*
-            ProdutoFile produtoFile = new ProdutoFile(o, produto);
+            ProdutoFile produtoFile = new ProdutoFile(file, obj);
 
             produtoService.insertProdutoFile(produtoFile);
 
-        });*/
+        });
 
+        Produto objRet = produtoService.findById(objDto.getProdutoId());
 
-
-        //produtoFileRepository.saveAll(Arrays.asList(produtoFile));
-
-//
-//
-//        ProdutoFile produtoFile = new ProdutoFile(file, produto);
-
-//        objDto.getFile().forEach(o -> {
-//            System.out.println("teste de insert");
-//            System.out.println(o.toString());
-//        });
-
-
-//        ProdutoFile obj = produtoService.fromDTO(objDto);
-
-
-        //obj = produtoService.insertProdutoFile(obj);
-
-        return null;
+        return objRet;
 
     }
 

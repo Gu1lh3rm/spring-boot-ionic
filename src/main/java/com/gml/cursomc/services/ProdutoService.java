@@ -54,10 +54,10 @@ public class ProdutoService {
         return produtoRepository.findDistinctByNomeContainingAndCategoriasIn(nome, categorias, pageRequest);
     }
 
-    public ProdutoFile insertFile(ProdutoFile obj) {
+    public File insertFile(File obj) {
         ProdutoFile produtoFile = new ProdutoFile();
 
-        obj = produtoFileRepository.save(obj);
+        obj = fileRepository.save(obj);
         return  obj;
     }
 
@@ -97,29 +97,10 @@ public class ProdutoService {
 
     }
 
-    public ProdutoFile fromDTO(ProdutoFileNewDTO objDto) {
 
-        /*File file = new File(objDto.getFile().getName(),objDto.getBucket(),objDto.getGeneration(),objDto.getMetageneration(),objDto.getContentType(),objDto.getTimeCreated(),objDto.getUpdated(),
-                objDto.getStorageClass(),objDto.getSize(),objDto.getMd5Hash(),objDto.getContentEncoding(),objDto.getContentDisposition(),objDto.getCrc32c(),objDto.getEtag(),
-                objDto.getDownloadTokens(),objDto.getHash(),objDto.getPath(),objDto.getDownloadUrl(),null);
+    public ProdutoFile insertProdutoFile(ProdutoFile obj) {
 
-        Produto produto = new Produto(objDto.getProdutoId(), null, null);
-
-        ProdutoFile produtoFile = new ProdutoFile(file, produto);
-
-        fileRepository.save(file);
-
-        produtoFileRepository.saveAll(Arrays.asList(produtoFile));
-
-        return produtoFile;*/
-        return null;
-    }
-
-    public ProdutoFile insertProdutoFile(ProdutoFileNewDTO obj) {
-
-       // produto = produtoService.findById(objDto.getProdutoId());
-
-        //obj = produtoFileRepository.save(obj);
+        obj = produtoFileRepository.save(obj);
 
         return null;
     }
