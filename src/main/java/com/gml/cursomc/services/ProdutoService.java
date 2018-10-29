@@ -2,11 +2,9 @@ package com.gml.cursomc.services;
 
 import com.gml.cursomc.domain.Categoria;
 import com.gml.cursomc.domain.Produto;
-import com.gml.cursomc.domain.ProdutoFile;
 import com.gml.cursomc.dto.ProdutoFileNewDTO;
 import com.gml.cursomc.dto.ProdutoNewDTO;
 import com.gml.cursomc.repositories.CategoriaRepository;
-import com.gml.cursomc.repositories.ProdutoFileRepository;
 import com.gml.cursomc.services.exceptions.ObjectNotFoundException;
 import com.gml.cursomc.repositories.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +25,6 @@ public class ProdutoService {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    @Autowired
-    private ProdutoFileRepository produtoFileRepository;
 
     public List<Produto> findAll() {
         return produtoRepository.findAll();
@@ -37,7 +33,7 @@ public class ProdutoService {
     public Produto findById(Integer id) {
         Optional<Produto> obj = produtoRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
-           "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()
+                "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()
         ));
     }
 
@@ -47,12 +43,6 @@ public class ProdutoService {
         return produtoRepository.findDistinctByNomeContainingAndCategoriasIn(nome, categorias, pageRequest);
     }
 
-    public ProdutoFile insertFile(ProdutoFile obj) {
-        ProdutoFile produtoFile = new ProdutoFile();
-
-        obj = produtoFileRepository.save(obj);
-        return  obj;
-    }
 
     public Produto insert(Produto obj) {
         obj = produtoRepository.save(obj);
@@ -62,15 +52,11 @@ public class ProdutoService {
     public Produto fromDTO(ProdutoNewDTO objDto) {
 
         Produto prod = new Produto(null, objDto.getNome(), objDto.getPreco());
-        Categoria cat = new Categoria(objDto.getCategoriaId(),null,null);
+        Categoria cat = new Categoria(objDto.getCategoriaId(), null, null);
 
         prod.getCategorias().add(cat);
 
         return prod;
     }
 
-    public List<ProdutoFile> fromFileDTO(ProdutoFileNewDTO objDto) {
-
-        return null;
-    }
 }

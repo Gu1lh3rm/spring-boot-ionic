@@ -29,6 +29,9 @@ public class DBService {
     private ProdutoRepository produtoRepository;
 
     @Autowired
+    private FileRepository fileRepository;
+
+    @Autowired
     private EstadoRepository estadoRepository;
 
     @Autowired
@@ -45,9 +48,6 @@ public class DBService {
 
     @Autowired
     private PagamentoRepository pagamentoRepository;
-
-    @Autowired
-    private ProdutoFileRepository produtoFileRepository;
 
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
@@ -200,37 +200,75 @@ public class DBService {
         p10.getCategorias().addAll(Arrays.asList(cat6));
         p11.getCategorias().addAll(Arrays.asList(cat7));
 
-        /*ProdutoFile pf1 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p1 );
-        ProdutoFile pf2 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p2 );
-        ProdutoFile pf3 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p3 );
-        ProdutoFile pf4 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p4 );
-        ProdutoFile pf5 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p5 );
-        ProdutoFile pf6 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p6 );
-        ProdutoFile pf7 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p7 );
-        ProdutoFile pf8 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p8 );
-        ProdutoFile pf9 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p9 );
-        ProdutoFile pf10 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p10 );
-        ProdutoFile pf11= new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p11 );
-        ProdutoFile pf12 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p12 );
-        ProdutoFile pf13 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p13 );
-        ProdutoFile pf14 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p14 );
-        ProdutoFile pf15 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p15 );
-        ProdutoFile pf16 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p16 );
-        ProdutoFile pf17 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p17 );
-        ProdutoFile pf18 = new ProdutoFile(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,avatar_blanck,p18 );*/
+        File file = new File(null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"prod.jpg","assets/imgs","assets/imgs/prod.jpg");
+
+        p1.getFiles().addAll(Arrays.asList(file));
+        p2.getFiles().addAll(Arrays.asList(file));
+        p3.getFiles().addAll(Arrays.asList(file));
+        p4.getFiles().addAll(Arrays.asList(file));
+        p5.getFiles().addAll(Arrays.asList(file));
+        p6.getFiles().addAll(Arrays.asList(file));
+        p7.getFiles().addAll(Arrays.asList(file));
+        p8.getFiles().addAll(Arrays.asList(file));
+        p9.getFiles().addAll(Arrays.asList(file));
+        p10.getFiles().addAll(Arrays.asList(file));
+        p11.getFiles().addAll(Arrays.asList(file));
+        p12.getFiles().addAll(Arrays.asList(file));
+        p13.getFiles().addAll(Arrays.asList(file));
+        p14.getFiles().addAll(Arrays.asList(file));
+        p15.getFiles().addAll(Arrays.asList(file));
+        p16.getFiles().addAll(Arrays.asList(file));
+        p17.getFiles().addAll(Arrays.asList(file));
+        p18.getFiles().addAll(Arrays.asList(file));
+        p19.getFiles().addAll(Arrays.asList(file));
+        p20.getFiles().addAll(Arrays.asList(file));
+        p21.getFiles().addAll(Arrays.asList(file));
+        p22.getFiles().addAll(Arrays.asList(file));
+        p23.getFiles().addAll(Arrays.asList(file));
+        p24.getFiles().addAll(Arrays.asList(file));
+        p25.getFiles().addAll(Arrays.asList(file));
+        p26.getFiles().addAll(Arrays.asList(file));
+        p27.getFiles().addAll(Arrays.asList(file));
+        p28.getFiles().addAll(Arrays.asList(file));
+        p29.getFiles().addAll(Arrays.asList(file));
+        p30.getFiles().addAll(Arrays.asList(file));
+        p31.getFiles().addAll(Arrays.asList(file));
+        p32.getFiles().addAll(Arrays.asList(file));
+        p33.getFiles().addAll(Arrays.asList(file));
+        p34.getFiles().addAll(Arrays.asList(file));
+        p35.getFiles().addAll(Arrays.asList(file));
+        p36.getFiles().addAll(Arrays.asList(file));
+        p37.getFiles().addAll(Arrays.asList(file));
+        p38.getFiles().addAll(Arrays.asList(file));
+        p39.getFiles().addAll(Arrays.asList(file));
+        p40.getFiles().addAll(Arrays.asList(file));
+        p41.getFiles().addAll(Arrays.asList(file));
+        p42.getFiles().addAll(Arrays.asList(file));
+        p43.getFiles().addAll(Arrays.asList(file));
+        p44.getFiles().addAll(Arrays.asList(file));
+        p45.getFiles().addAll(Arrays.asList(file));
+        p46.getFiles().addAll(Arrays.asList(file));
+        p47.getFiles().addAll(Arrays.asList(file));
+        p48.getFiles().addAll(Arrays.asList(file));
+        p49.getFiles().addAll(Arrays.asList(file));
+        p50.getFiles().addAll(Arrays.asList(file));
 
 
+        file.getProdutos().addAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20,
+                p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38,
+                p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50));
 
+        fileRepository.saveAll(Arrays.asList(file));
 
         categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 
-
-
-        produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
-
-        produtoRepository.saveAll(Arrays.asList(p12, p13, p14, p15, p16, p17, p18, p19, p20,
+        produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20,
                 p21, p22, p23, p24, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35, p36, p37, p38,
                 p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49, p50));
+
+
+
+
 
         /*
         produtoFileRepository.saveAll(Arrays.asList(pf1, pf2, pf3, pf4, pf5, pf6, pf7, pf8, pf9, pf10, pf11, pf12, pf13, pf14, pf15, pf16, pf17, pf18));
@@ -306,11 +344,11 @@ public class DBService {
     }
 
 
-    public void getCatImgUrl(){
+  /*  public void getCatImgUrl(){
         List<Categoria> obj = categoriaService.findAll();
 
         obj.forEach(o -> {
-            String urlImg = null;/*bucketService.getImgUrl("/cat" + o.getId().toString());*/
+            String urlImg = null;*//*bucketService.getImgUrl("/cat" + o.getId().toString());*//*
 
             if(urlImg!=null){
                 urlImg =    urlBase  + "/cat" + o.getId().toString() + urlTokenType + urlImg;
@@ -328,7 +366,7 @@ public class DBService {
 
 
         obj.forEach(o -> {
-            String urlImg = null;/*bucketService.getImgUrl("/cp" + o.getId().toString());*/
+            String urlImg = null;*//*bucketService.getImgUrl("/cp" + o.getId().toString());*//*
 
             if(urlImg!=null){
                 urlImg =  urlBase  + "/cp" + o.getId().toString() + urlTokenType + urlImg;
@@ -339,7 +377,7 @@ public class DBService {
 
             clienteRepository.save(o);
         });
-    }
+    }*/
 
     /*public void getProdutoImgUrl(){
         List<Produto> obj = produtoService.findAll();

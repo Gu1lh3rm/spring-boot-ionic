@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class ProdutoFile implements Serializable {
-    private static final long serialVersionUID =1L;
+public class File implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,19 +29,18 @@ public class ProdutoFile implements Serializable {
     private String crc32c;
     private String etag;
     private String downloadTokens;
+    private String hash;
     private String path;
     private String downloadUrl;
 
     @JsonBackReference
-    @ManyToOne
-    @JoinColumn(name="produto_id")
-    private Produto produto;
+    @ManyToMany(mappedBy = "files")
+    private List<Produto> produtos = new ArrayList<>();
 
-    public ProdutoFile() {
+    public File() {
     }
 
-    public ProdutoFile(Integer id, String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens, String path, String downloadUrl, Produto produto) {
-        this.id = id;
+    public File(String name, String bucket, String generation, String metageneration, String contentType, String timeCreated, String updated, String storageClass, String size, String md5Hash, String contentEncoding, String contentDisposition, String crc32c, String etag, String downloadTokens, String hash, String path, String downloadUrl) {
         this.name = name;
         this.bucket = bucket;
         this.generation = generation;
@@ -56,9 +56,9 @@ public class ProdutoFile implements Serializable {
         this.crc32c = crc32c;
         this.etag = etag;
         this.downloadTokens = downloadTokens;
+        this.hash = hash;
         this.path = path;
         this.downloadUrl = downloadUrl;
-        this.produto = produto;
     }
 
     public Integer getId() {
@@ -189,6 +189,14 @@ public class ProdutoFile implements Serializable {
         this.downloadTokens = downloadTokens;
     }
 
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
+    }
+
     public String getPath() {
         return path;
     }
@@ -205,11 +213,11 @@ public class ProdutoFile implements Serializable {
         this.downloadUrl = downloadUrl;
     }
 
-    public Produto getProduto() {
-        return produto;
+    public List<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
     }
 }

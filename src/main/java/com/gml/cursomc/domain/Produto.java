@@ -1,5 +1,6 @@
 package com.gml.cursomc.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -18,11 +19,6 @@ public class Produto implements Serializable{
     private String nome;
     private Double preco;
 
-
-    @JsonManagedReference
-    @OneToMany(mappedBy = "produto")
-    private List<ProdutoFile> file = new ArrayList<>();
-
     @JsonIgnore
     @ManyToMany
     @JoinTable(name = "PRODUTO_CATEGORIA",
@@ -34,6 +30,14 @@ public class Produto implements Serializable{
     @JsonIgnore
     @OneToMany(mappedBy = "id.produto")
     private Set<ItemPedido> itens = new HashSet<>();
+
+    @JsonManagedReference
+    @ManyToMany
+    @JoinTable(name = "PRODUTO_FILE",
+        joinColumns = @JoinColumn(name = "produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "file_id")
+    )
+    private List<File> files = new ArrayList<>();
 
     public Produto() {
     }
@@ -68,13 +72,6 @@ public class Produto implements Serializable{
         this.preco = preco;
     }
 
-    public List<ProdutoFile> getFile() {
-        return file;
-    }
-
-    public void setFile(List<ProdutoFile> file) {
-        this.file = file;
-    }
 
     @JsonIgnore
     public List<Pedido> getPedidos() {
@@ -97,9 +94,16 @@ public class Produto implements Serializable{
         return categorias;
     }
 
-
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
+    }
+
+    public List<File> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<File> files) {
+        this.files = files;
     }
 
     @Override
@@ -122,7 +126,9 @@ public class Produto implements Serializable{
         sb.append("id=").append(id);
         sb.append(", nome='").append(nome).append('\'');
         sb.append(", preco=").append(preco);
-        sb.append(", file=").append(file);
+        sb.append(", categorias=").append(categorias);
+        sb.append(", itens=").append(itens);
+        sb.append(", files=").append(files);
         sb.append('}');
         return sb.toString();
     }

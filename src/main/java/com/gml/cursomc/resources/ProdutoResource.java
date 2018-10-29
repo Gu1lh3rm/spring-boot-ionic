@@ -1,9 +1,7 @@
 package com.gml.cursomc.resources;
 
 
-import com.gml.cursomc.domain.Categoria;
 import com.gml.cursomc.domain.Produto;
-import com.gml.cursomc.domain.ProdutoFile;
 import com.gml.cursomc.dto.ProdutoDTO;
 import com.gml.cursomc.dto.ProdutoFileNewDTO;
 import com.gml.cursomc.dto.ProdutoNewDTO;
@@ -17,7 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
