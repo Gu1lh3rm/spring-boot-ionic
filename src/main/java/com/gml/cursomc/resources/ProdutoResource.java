@@ -2,6 +2,7 @@ package com.gml.cursomc.resources;
 
 
 import com.gml.cursomc.domain.File;
+import com.gml.cursomc.domain.ItemPedido;
 import com.gml.cursomc.domain.Produto;
 import com.gml.cursomc.dto.ProdutoDTO;
 import com.gml.cursomc.dto.ProdutoFileNewDTO;
@@ -18,9 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 @RestController
@@ -72,32 +71,42 @@ public class ProdutoResource {
         return ResponseEntity.created(uri).build();
     }
 
-    private Integer cont = 0;
-
-    public Integer getCont() {
-        return cont;
-    }
-
-    public void setCont(Integer cont) {
-        this.cont = cont;
-    }
-
     @PostMapping(value = "/picture")
     public Produto insertFile(@Valid @RequestBody ProdutoFileNewDTO objDto){
 
         Produto produto = produtoService.findById(objDto.getProdutoId());
 
+        Vector a = new Vector();
+
+        produto.getFiles().forEach(o -> {
+            a.add(o.getId());
+        });
+
+        produto.getFiles().removeAll(produto.getFiles());
+
+        produtoRepository.save(produto);
+
+        for ( Object o : a ) {
+
+            if ((Integer) o != 1) {
+                System.out.println(o.toString());
+                fileRepository.deleteById((Integer) o);
+            }
+        }
+
+
         objDto.getFiles().forEach(obj -> {
 
             File file = produtoService.fromDTO(obj, produto);
 
-            File file1 = produtoService.insertFile(file);
+            file = produtoService.insertFile(file);
 
-            produto.getFiles().add(file1);
+            produto.getFiles().add(file);
 
             produtoRepository.save(produto);
 
         });
+
 
         Produto retProduto = produtoService.findById(objDto.getProdutoId());
 

@@ -2,6 +2,8 @@ package com.gml.cursomc.dto;
 
 import com.gml.cursomc.dto.common.BucketDTO;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import java.util.List;
 public class ProdutoFileNewDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @NotNull
     private Integer produtoId;
 
     private List<FileNewDTO> files;
