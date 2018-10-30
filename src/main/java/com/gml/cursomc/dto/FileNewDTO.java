@@ -8,6 +8,8 @@ import java.io.Serializable;
 public class FileNewDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
+
+    private Integer id;
     private String name;
     private String bucket;
     private String generation;
@@ -35,6 +37,14 @@ public class FileNewDTO implements Serializable {
     @NotEmpty(message = "Preenchimento obrigatório")
     @Length(min = 10, message = "O tamanho da downloadUrl deve ser maior que 10 caracteres")
     private String downloadUrl;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

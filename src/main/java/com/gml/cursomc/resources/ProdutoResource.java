@@ -1,10 +1,13 @@
 package com.gml.cursomc.resources;
 
 
+import com.gml.cursomc.domain.File;
 import com.gml.cursomc.domain.Produto;
 import com.gml.cursomc.dto.ProdutoDTO;
 import com.gml.cursomc.dto.ProdutoFileNewDTO;
 import com.gml.cursomc.dto.ProdutoNewDTO;
+import com.gml.cursomc.repositories.FileRepository;
+import com.gml.cursomc.repositories.ProdutoRepository;
 import com.gml.cursomc.resources.utils.URL;
 import com.gml.cursomc.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +18,22 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @RestController
 @RequestMapping(value = "/api/produtos")
 public class ProdutoResource {
     @Autowired
     private ProdutoService produtoService;
+
+    @Autowired
+    private ProdutoRepository produtoRepository;
+
+    @Autowired
+    private FileRepository fileRepository;
 
     @GetMapping(value = "")
     public List<Produto> getProdutos() {
@@ -60,16 +72,37 @@ public class ProdutoResource {
         return ResponseEntity.created(uri).build();
     }
 
+    private Integer cont = 0;
+
+    public Integer getCont() {
+        return cont;
+    }
+
+    public void setCont(Integer cont) {
+        this.cont = cont;
+    }
+
     @PostMapping(value = "/picture")
-    public @Valid ProdutoFileNewDTO insertFile(@Valid @RequestBody ProdutoFileNewDTO objDto){
+    public Produto insertFile(@Valid @RequestBody ProdutoFileNewDTO objDto){
 
         Produto produto = produtoService.findById(objDto.getProdutoId());
 
-        //System.out.println(objDto.getProdutoId().toString());
+        objDto.getFiles().forEach(obj -> {
 
-        System.out.println(objDto.toString());
+            File file = produtoService.fromDTO(obj, produto);
 
-        return objDto;
+            File file1 = produtoService.insertFile(file);
+
+            produto.getFiles().add(file1);
+
+            produtoRepository.save(produto);
+
+        });
+
+        Produto retProduto = produtoService.findById(objDto.getProdutoId());
+
+        return retProduto;
+
     }
 
 }

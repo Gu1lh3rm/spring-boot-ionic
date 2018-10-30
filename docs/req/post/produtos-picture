@@ -1,0 +1,47 @@
+http://localhost:9090/api/produtos/picture
+
+{
+    "produtoId": 50,
+    "files": [
+        {
+            "name": "profile/11e219e7e54b2d85ae0bcedb65ee7d18",
+            "bucket": "gml-curso-spring-ionic-front.appspot.com",
+            "generation": "1540228203901473",
+            "metageneration": "1",
+            "contentType": "image/jpeg",
+            "timeCreated": "2018-10-22T17:10:03.901Z",
+            "updated": "2018-10-22T17:10:03.901Z",
+            "storageClass": "STANDARD",
+            "size": "509548",
+            "md5Hash": "SU2ri/mpvufTTC7aJleYNg==",
+            "contentEncoding": "identity",
+            "contentDisposition": "inline; filename*=utf-8''11e219e7e54b2d85ae0bcedb65ee7d18",
+            "crc32c": "kzSVVA==",
+            "etag": "CKHk3ZfFmt4CEAE=",
+            "downloadTokens": "760e2055-d0ee-4118-a006-ba7ae87845bf",
+            "hash": "asdfradfrsfdaghghhh",
+            "path": "profile",
+            "downloadUrl": null
+        },
+        {
+            "name": "profile/11e219e7e54b2d85ae0bcedb65ee7d18",
+            "bucket": "gml-curso-spring-ionic-front.appspot.com",
+            "generation": "1540228203901473",
+            "metageneration": "1",
+            "contentType": "image/jpeg",
+            "timeCreated": "2018-10-22T17:10:03.901Z",
+            "updated": "2018-10-22T17:10:03.901Z",
+            "storageClass": "STANDARD",
+            "size": "509548",
+            "md5Hash": "SU2ri/mpvufTTC7aJleYNg==",
+            "contentEncoding": "identity",
+            "contentDisposition": "inline; filename*=utf-8''11e219e7e54b2d85ae0bcedb65ee7d18",
+            "crc32c": "kzSVVA==",
+            "etag": "CKHk3ZfFmt4CEAE=",
+            "downloadTokens": "760e2055-d0ee-4118-a006-ba7ae87845bf",
+            "hash": "asdfradfrsfdaghghhh",
+            "path": "profile",
+            "downloadUrl": null
+        }
+    ]
+}
