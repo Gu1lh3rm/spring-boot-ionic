@@ -1,8 +1,6 @@
-package com.gml.cursomc.resources;
+package com.gml.cursomc.controllers;
 
-import com.gml.cursomc.domain.Categoria;
 import com.gml.cursomc.domain.Pedido;
-import com.gml.cursomc.dto.CategoriaDTO;
 import com.gml.cursomc.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,8 +14,8 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/pedidos")
-public class PedidoResource {
+@RequestMapping(value = "/pedidos")
+public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 

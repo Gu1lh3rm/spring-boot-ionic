@@ -1,4 +1,4 @@
-package com.gml.cursomc.resources;
+package com.gml.cursomc.controllers;
 
 import com.gml.cursomc.domain.Categoria;
 import com.gml.cursomc.dto.CategoriaDTO;
@@ -13,12 +13,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/api/categorias")
-public class CategoriaResource {
+@RequestMapping(value = "/categorias")
+public class CategoriaController {
     @Autowired
     private CategoriaService categoriaService;
 

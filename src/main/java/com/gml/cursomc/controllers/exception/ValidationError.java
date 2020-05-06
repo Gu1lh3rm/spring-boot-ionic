@@ -1,4 +1,4 @@
-package com.gml.cursomc.resources.exception;
+package com.gml.cursomc.controllers.exception;
 
 import java.util.ArrayList;
 import java.util.List;

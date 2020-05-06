@@ -1,15 +1,14 @@
-package com.gml.cursomc.resources;
+package com.gml.cursomc.controllers;
 
 
 import com.gml.cursomc.domain.File;
-import com.gml.cursomc.domain.ItemPedido;
 import com.gml.cursomc.domain.Produto;
 import com.gml.cursomc.dto.ProdutoDTO;
 import com.gml.cursomc.dto.ProdutoFileNewDTO;
 import com.gml.cursomc.dto.ProdutoNewDTO;
 import com.gml.cursomc.repositories.FileRepository;
 import com.gml.cursomc.repositories.ProdutoRepository;
-import com.gml.cursomc.resources.utils.URL;
+import com.gml.cursomc.controllers.utils.URL;
 import com.gml.cursomc.services.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,11 +19,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 
 @RestController
-@RequestMapping(value = "/api/produtos")
-public class ProdutoResource {
+@RequestMapping(value = "/produtos")
+public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 

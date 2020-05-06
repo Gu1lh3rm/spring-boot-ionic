@@ -2,7 +2,7 @@
     * No arquivo application.properties adicione a linha server.port=${port:8081}
 # Como inserir uma objeto em um Resource 
     *
-     package com.gml.cursomc.resources;
+     package com.gml.cursomc.controllers;
      
      import com.gml.cursomc.domain.Categoria;
      import org.springframework.web.bind.annotation.GetMapping;

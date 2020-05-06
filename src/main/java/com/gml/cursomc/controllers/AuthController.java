@@ -1,4 +1,4 @@
-package com.gml.cursomc.resources;
+package com.gml.cursomc.controllers;
 
 import com.gml.cursomc.dto.EmailDTO;
 import com.gml.cursomc.security.JWTUtil;
@@ -17,7 +17,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/auth")
-public class AuthResource {
+public class AuthController {
 
     @Autowired
     private JWTUtil jwtUtil;

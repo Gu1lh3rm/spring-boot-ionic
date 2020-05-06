@@ -1,4 +1,4 @@
-package com.gml.cursomc.resources;
+package com.gml.cursomc.controllers;
 
 import com.gml.cursomc.domain.Cidade;
 import com.gml.cursomc.domain.Estado;
@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/api/estados")
-public class EstadoResource {
+@RequestMapping(value = "/estados")
+public class EstadoController {
     @Autowired
     private EstadoService estadoService;
 

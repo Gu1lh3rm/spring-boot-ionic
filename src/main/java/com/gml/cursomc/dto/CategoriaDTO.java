@@ -1,11 +1,19 @@
 package com.gml.cursomc.dto;
 
 import com.gml.cursomc.domain.Categoria;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class CategoriaDTO implements Serializable {
     private static final long serialVersionUID =1L;
 
@@ -17,9 +25,6 @@ public class CategoriaDTO implements Serializable {
 
     private String imgUrl;
 
-    public CategoriaDTO() {
-
-    }
 
     public CategoriaDTO(Categoria obj) {
         id = obj.getId();
@@ -27,27 +32,4 @@ public class CategoriaDTO implements Serializable {
         imgUrl = obj.getImgUrl();
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
 }

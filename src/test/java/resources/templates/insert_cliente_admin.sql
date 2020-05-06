@@ -1,0 +1,1 @@
+INSERT INTO public.cliente (id, cpf_ou_cnpj, email, nome, password, tipo) VALUES (1, '39771451855', 'guilhermemonteirolourenco@gmail.com', 'Guilherme Lourenco', '$2a$10$cyKQ6F5T8b7vEDo.a6ZT7uSZPKAsYf6.jmosngwOfEKjZ2.PCIVfS', 1);

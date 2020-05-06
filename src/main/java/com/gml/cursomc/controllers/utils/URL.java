@@ -1,4 +1,4 @@
-package com.gml.cursomc.resources.utils;
+package com.gml.cursomc.controllers.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
