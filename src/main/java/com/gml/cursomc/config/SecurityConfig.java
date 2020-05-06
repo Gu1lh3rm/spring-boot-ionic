@@ -16,6 +16,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -40,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     private JWTUtil jwtUtil;
 
     private static final String[] PUBLIC_MATCHERS = {
-         "/h2-console/**"
+         "/h2-console/**", "/swagger/**",
     };
 
     private static final String[] PUBLIC_MATCHERS_GET = {
@@ -54,6 +55,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
             "/api/clientes",
             "/auth/forgot**"
     };
+
+    @Override
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers("/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/**",
+                "/swagger-ui.html", "/webjars/**");
+    }
+
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
