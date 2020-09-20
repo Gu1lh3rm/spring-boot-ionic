@@ -44,6 +44,18 @@ public abstract class GenericTest {
                 .accept(MediaType.APPLICATION_JSON);
     }
 
+    public MockHttpServletRequestBuilder put(String url) {
+        return org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+    }
+
+    public MockHttpServletRequestBuilder delete(String url) {
+        return org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete(url)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON);
+    }
+
     public static String asJsonString(final Object obj) {
         try {
             return new ObjectMapper().writeValueAsString(obj);
@@ -69,6 +81,9 @@ public abstract class GenericTest {
     }
     public int created() {
         return HttpStatus.CREATED.value();
+    }
+    public int noContent() {
+        return HttpStatus.NO_CONTENT.value();
     }
 
 }

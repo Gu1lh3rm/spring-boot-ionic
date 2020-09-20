@@ -37,6 +37,7 @@ public class CategoriaControllerTest extends GenericTest {
         Mockito.when(service.findById(Mockito.anyInt())).thenReturn(categorias.get(0));
         Mockito.when(service.fromDTO(Mockito.any(CategoriaDTO.class))).thenReturn(categorias.get(0));
         Mockito.when(service.insert(Mockito.any(Categoria.class))).thenReturn(categorias.get(0));
+        Mockito.when(service.update(Mockito.any(Categoria.class))).thenReturn(categorias.get(0));
         super.before();
     }
 
@@ -62,5 +63,21 @@ public class CategoriaControllerTest extends GenericTest {
                 post("/categorias").content(asJsonString(getCategoriaDTO()))
         );
         assertEquals(created(), response.getStatus());
+    }
+
+    @Test
+    public void shouldUpdateCategoriaUsingPUT() throws Exception {
+        response = perform(
+                put("/categorias/1").content(asJsonString(getCategoriaDTO()))
+        );
+        assertEquals(noContent(), response.getStatus());
+    }
+
+    @Test
+    public void shouldDeleteCategoriaUsingDELETE() throws Exception {
+        response = perform(
+                delete("/categorias/1")
+        );
+        assertEquals(noContent(), response.getStatus());
     }
 }
